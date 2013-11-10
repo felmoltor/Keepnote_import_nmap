@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title</key><string>Hostnames</string>
+  <key>nodeid</key><string>3acab2ca-77d7-4049-aa7c-9cf7d9cfb187</string>
+  <key>modified_time</key><integer>1384125514</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1384125514</integer>
+  <key>order</key><integer>1</integer>
+</dict>
+</node>

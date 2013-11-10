@@ -194,7 +194,7 @@ def import_nmap(node, filename, index=None, task=None):
         # Create a page with status reason of the host and other information
         statusnode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Status Info",None)
         statusout = safefile.open(statusnode.get_data_file(),"w",codec="utf-8")
-        statusout.write(u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+        statusout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
         statusout.write("<b>Status:</b> %s<br/>" % hstatus)
         statusout.write("<b>Status Reason:</b> %s<br/>" % hstatusreason)
         statusout.write("<b>Status Reason TTL:</b> %s<br/>" % hstatusreasonttl)
@@ -204,7 +204,7 @@ def import_nmap(node, filename, index=None, task=None):
         # Create a page with multiple hostnames of this host
         hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)
         hostnameout = safefile.open(hostnamenode.get_data_file(),"w",codec="utf-8")
-        statusout.write(u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+        hostnameout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
         for hnametype in hnames:
             hostnameout.write(("<b>Hostname:</b> %s. <b>Type:</b> %s") % (hnametype[0],hnametype[1]))
         hostnameout.write("</body></html>")

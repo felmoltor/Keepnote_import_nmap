@@ -2,14 +2,14 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>Status Info</string>
-  <key>nodeid</key><string>00cd9b9b-f61b-497b-95e7-a6aed500bb9c</string>
-  <key>modified_time</key><integer>1384125811</integer>
+  <key>title</key><string>Hostnames</string>
+  <key>nodeid</key><string>799d8bfe-639c-4b9f-8b86-7374e7a4fc5d</string>
+  <key>modified_time</key><integer>1384125721</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1384125811</integer>
+  <key>created_time</key><integer>1384125721</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>0</integer>
+  <key>order</key><integer>1</integer>
   <key>info_sort</key><string>order</string>
 </dict>
 </node>

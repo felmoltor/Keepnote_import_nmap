@@ -1,16 +1,11 @@
 """
 
-    KeepNote
-    Import plain text files extension
+    Author: Felipe Molina de la Torre
+    Date: November 2013
+    Summary: Import a tree from nmap output XML files
 
 """
 
-#
-#  KeepNote
-#  Copyright (c) 2008-2010 Matt Rasmussen
-#  Author: Matt Rasmussen <rasmus@mit.edu>
-#  import_folder extension by: Will Rouesnel <electricitylikesme@hotmail.com>
-#                              Matt Rasmussen <rasmus@mit.edu>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,10 +82,10 @@ class Extension (extension.Extension):
         
         # add menu options
         self.add_action(
-            window, "Import Txt", _("Import _Txt..."),
-            lambda w: self.on_import_txt(
+            window, "Import Nmap XML", _("Import Nmap XML"),
+            lambda w: self.on_import_nmap(
                 window, window.get_notebook()),
-            tooltip=_("Import plain text files to the notebook"))
+            tooltip=_("Import a tree of folder extracted from a nmap scan result file"))
         
         # TODO: Fix up the ordering on the affected menus.
         self.add_ui(window,
@@ -99,7 +94,7 @@ class Extension (extension.Extension):
             <menubar name="main_menu_bar">
                <menu action="File">
                  <menu action="Import">
-                     <menuitem action="Import Txt"/>
+                     <menuitem action="Import Nmap XML"/>
                  </menu>
                </menu>
             </menubar>
@@ -107,7 +102,7 @@ class Extension (extension.Extension):
             """)
 
 
-    def on_import_txt(self, window, notebook):
+    def on_import_nmap(self, window, notebook):
         """Callback from gui for importing a plain text file"""
         
         # Ask the window for the currently selected nodes
@@ -117,7 +112,7 @@ class Extension (extension.Extension):
         node = nodes[0]
 
         dialog = FileChooserDialog(
-            "Import Plain Text", window, 
+            "Import Nmap XML", window, 
             action=gtk.FILE_CHOOSER_ACTION_OPEN,
             buttons=("Cancel", gtk.RESPONSE_CANCEL,
                      "Import", gtk.RESPONSE_OK))
@@ -128,7 +123,7 @@ class Extension (extension.Extension):
             filenames = map(unicode_gtk, dialog.get_filenames())
             dialog.destroy()
 
-            self.import_plain_text(node, filenames, window=window)
+            self.import_nmap_xml(node, filenames, window=window)
         else:
             dialog.destroy()
 
@@ -176,45 +171,59 @@ def import_nmap(node, filename, index=None, task=None):
     if task is None:
         # create dummy task if needed
         task = tasklib.Task()
-    
 
-    # Explore the XML searching for IPs
-    try:
-        nmapxml = minidom.parse(filename)
-       
-        for hostnode in nmapxml.getElementsByTagName("host"):
-            hstartime = hostnode.getAttribute("starttime")
-            hendtime = hostnode.getAttribute("endtime")
-            hstatus = hostnode.getElementsByTagName("status")[0].getAttribute("state")
-            hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
-            haddres = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
-            # Create the folder with the first IP obtained and the fist hostname
-            hnames = []
-            for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):
-                hnames.append(hostname.getAttribute("name")) 
-            
-            newhostnode = node.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,hnames[0]),index)
-            newhostnode.set_attr("title",("%s - %s") % (haddress,hnames[0]))
-            # TODO: Create a page with status reason like this
-            statusnode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Status Info",None)
+    nmapxml = minidom.parse(filename)
 
-            for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
-                pnumber = port.getAttribute("portid")
-                pprotocol = port.getAttribute("protocol")
-                pstate = port.getElementsByTagName("state")[0].getAttribute("state")
-                pstateresason = port.getElementsByTagName("state")[0].getAttribute("reason")
-                # Create the page node
-                newportchild = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s/%s - %s") % (pnumber,pprotocol,pstate))
-                newportchild.set_attr("title",("%s/%s - %s") % (pnumber,pprotocol,pstate))
+    for hostnode in nmapxml.getElementsByTagName("host"):
+        hstartime = hostnode.getAttribute("starttime")
+        hendtime = hostnode.getAttribute("endtime")
+        hstatus = hostnode.getElementsByTagName("status")[0].getAttribute("state")
+        hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
+        hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
+        haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
+        # Create the folder with the first IP obtained and the fist hostname
+        hnames = []
+        for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):
+            hnames.append([hostname.getAttribute("name"),hostname.getAttribute("type")]) 
+
+        print "Hostname %s - %s" % (hnames[0][0],hnames[0][1])
+
+        newhostnode = node.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,hnames[0][0]),index)
+        newhostnode.set_attr("title",("%s - %s") % (haddress,hnames[0][0]))
+        
+        # Create a page with status reason of the host and other information
+        statusnode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Status Info",None)
+        statusout = safefile.open(statusnode.get_data_file(),"w",codec="utf-8")
+        statusout.write(u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+        statusout.write("<b>Status:</b> %s<br/>" % hstatus)
+        statusout.write("<b>Status Reason:</b> %s<br/>" % hstatusreason)
+        statusout.write("<b>Status Reason TTL:</b> %s<br/>" % hstatusreasonttl)
+        statusout.write("</body></html>")
+        statusout.close()
+        
+        # Create a page with multiple hostnames of this host
+        hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)
+        hostnameout = safefile.open(hostnamenode.get_data_file(),"w",codec="utf-8")
+        statusout.write(u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+        for hnametype in hnames:
+            hostnameout.write(("<b>Hostname:</b> %s. <b>Type:</b> %s") % (hnametype[0],hnametype[1]))
+        hostnameout.write("</body></html>")
+        hostnameout.close()
+
+        for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
+            pnumber = port.getAttribute("portid")
+            pprotocol = port.getAttribute("protocol")
+            pstate = port.getElementsByTagName("state")[0].getAttribute("state")
+            pstateresason = port.getElementsByTagName("state")[0].getAttribute("reason")
+            # Create the page node
+            newportchild = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s/%s - %s") % (pnumber,pprotocol,pstate))
+            newportchild.set_attr("title",("%s/%s - %s") % (pnumber,pprotocol,pstate))
 
 
-
-    except ExpatError:
-        print "There was some error parsing the file %s. Skipping it." % filename
+    task.finish()
 
 """
-    child = node.new_child(notebooklib.CONTENT_TYPE_DIR
-                            # notebooklib.CONTENT_TYPE_PAGE, 
+    child = node.new_child(notebooklib.CONTENT_TYPE_PAGE, 
                            os.path.basename(filename), index)
     child.set_attr("title", os.path.basename(filename)) # remove for 0.6.4
 
@@ -222,8 +231,8 @@ def import_nmap(node, filename, index=None, task=None):
 
 
     out = safefile.open(child.get_data_file(), "w", codec="utf-8")
-    out.write(u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+    out.write("<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><body>")
 
     lines = [escape_whitespace(escape(line)) for line in lines]
     text = "".join(lines)
@@ -237,7 +246,6 @@ def import_nmap(node, filename, index=None, task=None):
 
     out.close()
 """
-    task.finish()
                      
 
 def escape_whitespace(line):
@@ -272,14 +280,5 @@ def escape_whitespace(line):
 
 
 if __name__ == "__main__":
-    
-    text = ("  hello\n" 
-            "there & hi a  word here    \n"
-            "  ab  wer   123\n").split("\n")
-
-
-    for line in text:
-        line = escape(line)
-        line = escape_whitespace(line)
-        
-        print line
+    print "Use this as an extension for Keepnote, this is not a command line program..."
+    exit(1)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension>
+  <dict>
+    <key>version</key>
+    <string>0.1</string>
+    <key>name</key>
+    <string>Import Nmap XML file</string>
+    <key>author</key>
+    <string>Felipe Molina</string>
+    <key>email</key>
+    <string>felmoltor [at] Gmail</string>
+    <key>website</key>
+    <string>https://twitter.com/felmoltor</string>
+    <key>description</key>
+    <string>Imports a nmap XML file to a group of folders and text files</string>
+  </dict>
+</extension>

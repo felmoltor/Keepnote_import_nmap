@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.25 scan initiated Mon Nov 11 16:47:41 2013 as: nmap -sSV -F -v -oX host.list.2.xml -iL host.list -->
+<nmaprun scanner="nmap" args="nmap -sSV -F -v -oX host.list.2.xml -iL host.list" start="1384184861" startstr="Mon Nov 11 16:47:41 2013" version="6.25" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="100" services="7,9,13,21-23,25-26,37,53,79-81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,443-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3000,3128,3306,3389,3986,4899,5000,5009,5051,5060,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1384184862"/>
+<taskend task="Ping Scan" time="1384184862" extrainfo="8 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 8 hosts." time="1384184862"/>
+<taskend task="Parallel DNS resolution of 8 hosts." time="1384184863"/>
+<taskbegin task="SYN Stealth Scan" time="1384184863"/>
+<taskend task="SYN Stealth Scan" time="1384184874" extrainfo="800 total ports"/>
+<taskbegin task="Service scan" time="1384184874"/>
+<taskend task="Service scan" time="1384184963" extrainfo="9 services on 8 hosts"/>
+<taskbegin task="NSE" time="1384184963"/>
+<taskend task="NSE" time="1384184993"/>
+<host starttime="1384184862" endtime="1384184891"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="204.79.197.200" addrtype="ipv4"/>
+<hostnames>
+<hostname name="bing.com" type="user"/>
+<hostname name="any.edge.bing.com" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="98">
+<extrareasons reason="no-responses" count="98"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Microsoft IIS httpd" version="8.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:iis:8.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Microsoft IIS httpd" version="8.0" ostype="Windows" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:microsoft:iis:8.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<times srtt="7151" rttvar="13868" to="100000"/>
+</host>
+<host starttime="1384184862" endtime="1384184891"><status state="up" reason="syn-ack" reason_ttl="64"/>
+<address addr="173.194.112.64" addrtype="ipv4"/>
+<hostnames>
+<hostname name="google.com" type="user"/>
+<hostname name="fra07s29-in-f0.1e100.net" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="98">
+<extrareasons reason="no-responses" count="98"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Google httpd" version="2.0" extrainfo="GFE" ostype="Linux" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Google httpd" version="2.0" extrainfo="GFE" ostype="Linux" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+</ports>
+<times srtt="199005" rttvar="271209" to="1283841"/>
+</host>
+<host starttime="1384184862" endtime="1384184974"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="77.238.178.122" addrtype="ipv4"/>
+<hostnames>
+<hostname name="yahoo.es" type="user"/>
+<hostname name="w2.rc.vip.ird.yahoo.com" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="99">
+<extrareasons reason="no-responses" count="99"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" servicefp="SF-Port80-TCP:V=6.25%I=7%D=11/11%Time=5280FC30%P=x86_64-unknown-linux-gnu%r(GetRequest,E24,&quot;HTTP/1\.0\x20400\x20Bad\x20Request\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2015:47:57\x20GMT\r\nVary:\x20Accept-Encoding\r\nContent-Type:\x20text/html;\x20charset=iso-8859-1\r\nCache-Control:\x20private\r\nAge:\x200\r\nVia:\x20HTTP/1\.1\x20rc6\.ops\.ird\.yahoo\.com\x20\(YahooTrafficServer/1\.20\.10\x20\[cMsSf\x20\]\)\r\nServer:\x20YTS/1\.20\.10\r\n\r\n&lt;!doctype\x20html\x20public\x20\&quot;-//W3C//DTD\x20HTML\x204\.01//EN\&quot;\x20\&quot;http://www\.w3\.org/TR/html4/strict\.dtd\&quot;&gt;\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Yahoo!\x20-\x20400\x20Bad\x20Request&lt;/title&gt;&lt;style&gt;\n/\*\x20nn4\x20hide\x20\*/\x20\n/\*/\*/\nbody\x20{font:small/1\.2em\x20arial,helvetica,clean,sans-serif;font:x-small;text-align:center;}table\x20{font-size:inherit;font:x-small;}\nhtml&gt;body\x20{font:83%/1\.2em\x20arial,helvetica,clean,sans-serif;}input\x20{font-size:100%;vertical-align:middle;}p,\x20form\x20{margin:0;padding:0;}\np\x20{padding-bottom:6px;margin-bottom:10px;}#doc\x20{width:48\.5em;margin:0\x20auto;border:1px\x20solid\x20#fff;text-align:center;}#ygma\x20{text-align:right;margin-bottom:53px}\n#ygma\x20img\x20{float:left;}#ygma\x20div\x20{border-bot&quot;)%r(HTTPOptions,E24,&quot;HTTP/1\.0\x20400\x20Bad\x20Request\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2015:47:58\x20GMT\r\nVary:\x20Accept-Encoding\r\nContent-Type:\x20text/html;\x20charset=iso-8859-1\r\nCache-Control:\x20private\r\nAge:\x200\r\nVia:\x20HTTP/1\.1\x20rc4\.ops\.ird\.yahoo\.com\x20\(YahooTrafficServer/1\.20\.10\x20\[c\x20s\x20f\x20\]\)\r\nServer:\x20YTS/1\.20\.10\r\n\r\n&lt;!doctype\x20html\x20public\x20\&quot;-//W3C//DTD\x20HTML\x204\.01//EN\&quot;\x20\&quot;http://www\.w3\.org/TR/html4/strict\.dtd\&quot;&gt;\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Yahoo!\x20-\x20400\x20Bad\x20Request&lt;/title&gt;&lt;style&gt;\n/\*\x20nn4\x20hide\x20\*/\x20\n/\*/\*/\nbody\x20{font:small/1\.2em\x20arial,helvetica,clean,sans-serif;font:x-small;text-align:center;}table\x20{font-size:inherit;font:x-small;}\nhtml&gt;body\x20{font:83%/1\.2em\x20arial,helvetica,clean,sans-serif;}input\x20{font-size:100%;vertical-align:middle;}p,\x20form\x20{margin:0;padding:0;}\np\x20{padding-bottom:6px;margin-bottom:10px;}#doc\x20{width:48\.5em;margin:0\x20auto;border:1px\x20solid\x20#fff;text-align:center;}#ygma\x20{text-align:right;margin-bottom:53px}\n#ygma\x20img\x20{float:left;}#ygma\x20div\x20{border-bot&quot;);" method="table" conf="3"/></port>
+</ports>
+<times srtt="7781" rttvar="16542" to="100000"/>
+</host>
+<host starttime="1384184862" endtime="1384184963"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="8.8.8.8" addrtype="ipv4"/>
+<hostnames>
+<hostname name="google-public-dns-a.google.com" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="99">
+<extrareasons reason="no-responses" count="99"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+</ports>
+<times srtt="6351" rttvar="13374" to="100000"/>
+</host>
+<host starttime="1384184862" endtime="1384184993"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="195.219.143.18" addrtype="ipv4"/>
+<hostnames>
+<hostname name="gmv.com" type="user"/>
+<hostname name="www.gmv.es" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="99">
+<extrareasons reason="no-responses" count="99"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" servicefp="SF-Port80-TCP:V=6.25%I=7%D=11/11%Time=5280FC30%P=x86_64-unknown-linux-gnu%r(GetRequest,C9,&quot;HTTP/1\.1\x20302\x20Moved\x20Temporarily\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2015:47:57\x20GMT\r\nServer:\x20Undefined\r\nLocation:\x20http://www\.gmv\.com/en/\r\nContent-Type:\x20text/html;charset=UTF-8\r\nContent-Length:\x200\r\nConnection:\x20close\r\n\r\n&quot;)%r(HTTPOptions,C7,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2015:47:57\x20GMT\r\nServer:\x20Undefined\r\nAllow:\x20GET,\x20HEAD,\x20POST,\x20TRACE,\x20OPTIONS\r\nContent-Length:\x200\r\nConnection:\x20close\r\nContent-Type:\x20text/plain;\x20charset=ISO-8859-1\r\n\r\n&quot;)%r(FourOhFourRequest,9A2,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2015:48:08\x20GMT\r\nServer:\x20Undefined\r\nCache-Control:\x20max-age=0\r\nCache-Control:\x20must-revalidate\r\nPragma:\x20no-cache\r\nContent-Type:\x20text/html;charset=UTF-8\r\nContent-Length:\x202153\r\nSet-Cookie:\x20JSESSIONID=42E6ADEA4060E6712945E7513D5C9494;\x20Path=/;\x20HttpOnly\r\nConnection:\x20close\r\n\r\n\r\n\r\n\r\n\r\n&lt;html\x20xmlns=\&quot;http://www\.w3\.org/1999/xhtml\&quot;&gt;\r\n&lt;head&gt;\r\n&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=utf-8\&quot;\x20/&gt;\r\n&lt;meta\x20http-equiv=\&quot;X-UA-Compatible\&quot;\x20content=\&quot;IE=EmulateIE7\&quot;\x20/&gt;\r\n&lt;title&gt;GMV\x20page&lt;/title&gt;\r\n&lt;link\x20href=\&quot;/export/system/modules/com\.gmv\.teresa\.site/resources/estilos/capas_div\.css\&quot;\x20rel=\&quot;stylesheet\&quot;\x20type=\&quot;text/css\&quot;\x20/&gt;\r\n&lt;style\x20type=\&quot;text/css\&quot;&gt;\r\n&lt;!-&#45;\r\n\r\n\r\n\r\n\r\n\r\n-&#45;&gt;\r\n\r\n&lt;/style&gt;\r\n&lt;link\x20href=\&quot;/export/system/modules/com\.gmv\.teresa\.site/resources/estilos/texto\.css\&quot;\x20rel=\&quot;stylesheet\&quot;\x20type=\&quot;text/css\&quot;\x20/&gt;\r\n&lt;script\x20type=\&quot;text/javascript\&quot;&gt;\r\n&lt;!-&#45;\r\nfunction\x20MM_openBrWindow&quot;)%r(Help,4A6,&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Apache\x20Tomcat/6\.0\.32\x20-\x20Error\x20report&lt;/title&gt;&lt;style&gt;&lt;!-&#45;H1\x20{font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;}\x20H2\x20{font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;}\x20H3\x20{font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;}\x20BODY\x20{font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;}\x20B\x20{font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;}\x20P\x20{font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A\x20{color\x20:\x20black;}A\.name\x20{color\x20:\x20black;}HR\x20{color\x20:\x20#525D76;}-&#45;&gt;&lt;/style&gt;\x20&lt;/head&gt;&lt;body&gt;&lt;h1&gt;HTTP\x20Status\x20501\x20-\x20Method\x20HELP\x20is\x20not\x20is\x20not\x20implemented\x20by\x20this\x20servlet\x20for\x20this\x20URI\x20&lt;/h1&gt;&lt;HR\x20size=\&quot;1\&quot;\x20noshade=\&quot;noshade\&quot;&gt;&lt;p&gt;&lt;b&gt;type&lt;/b&gt;\x20Status\x20report&lt;/p&gt;&lt;p&gt;&lt;b&gt;message&lt;/b&gt;\x20&lt;u&gt;Method\x20HELP\x20is\x20not\x20is\x20not\x20implemented\x20b&quot;);" method="table" conf="3"/></port>
+</ports>
+<times srtt="8990" rttvar="19448" to="100000"/>
+</host>
+<host starttime="1384184862" endtime="1384184866"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="88.99.55.44" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="100">
+<extrareasons reason="no-responses" count="100"/>
+</extraports>
+</ports>
+<times srtt="16358" rttvar="19840" to="100000"/>
+</host>
+<host starttime="1384184862" endtime="1384184866"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="31.55.43.123" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="100">
+<extrareasons reason="no-responses" count="100"/>
+</extraports>
+</ports>
+<times srtt="2678" rttvar="3685" to="100000"/>
+</host>
+<host starttime="1384184862" endtime="1384184887"><status state="up" reason="syn-ack" reason_ttl="64"/>
+<address addr="137.254.60.11" addrtype="ipv4"/>
+<hostnames>
+<hostname name="dev.mysql.com" type="user"/>
+<hostname name="dev-mysql-adc.oracle.com" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="98">
+<extrareasons reason="no-responses" count="98"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.2" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.2" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2</cpe></service></port>
+</ports>
+<times srtt="143074" rttvar="46430" to="328794"/>
+</host>
+<runstats><finished time="1384184993" timestr="Mon Nov 11 16:49:53 2013" elapsed="132.02" summary="Nmap done at Mon Nov 11 16:49:53 2013; 8 IP addresses (8 hosts up) scanned in 132.02 seconds" exit="success"/><hosts up="8" down="0" total="8"/>
+</runstats>
+</nmaprun>

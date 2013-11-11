@@ -1,0 +1,9 @@
+# Nmap 6.25 scan initiated Mon Nov 11 17:00:48 2013 as: nmap -iL host.3.list -oA host.3.xml -p 80,8080,53,443,19 -sSV -v
+# Ports scanned: TCP(5;19,53,80,443,8080) UDP(0;) SCTP(0;) PROTOCOLS(0;)
+Host: 173.194.112.72 (fra07s29-in-f8.1e100.net)	Status: Up
+Host: 173.194.112.72 (fra07s29-in-f8.1e100.net)	Ports: 19/filtered/tcp//chargen//, 53/filtered/tcp//domain//, 80/open/tcp//http/Google httpd 2.0 (GFE)/, 443/open/tcp//ssl|http/Google httpd 2.0 (GFE)/, 8080/filtered/tcp//http-proxy//
+Host: 97.74.144.172 (p3nlh172.shr.prod.phx3.secureserver.net)	Status: Up
+Host: 97.74.144.172 (p3nlh172.shr.prod.phx3.secureserver.net)	Ports: 19/filtered/tcp//chargen//, 53/filtered/tcp//domain//, 80/open/tcp//http/Apache/, 443/filtered/tcp//https//, 8080/filtered/tcp//http-proxy//
+Host: 8.8.8.8 (google-public-dns-a.google.com)	Status: Up
+Host: 8.8.8.8 (google-public-dns-a.google.com)	Ports: 19/filtered/tcp//chargen//, 53/open/tcp//tcpwrapped//, 80/filtered/tcp//http//, 443/filtered/tcp//https//, 8080/filtered/tcp//http-proxy//
+# Nmap done at Mon Nov 11 17:01:08 2013 -- 3 IP addresses (3 hosts up) scanned in 19.62 seconds

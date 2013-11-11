@@ -1,0 +1,38 @@
+# Nmap 6.25 scan initiated Mon Nov 11 17:00:48 2013 as: nmap -iL host.3.list -oA host.3.xml -p 80,8080,53,443,19 -sSV -v
+Failed to resolve given hostname/IP: blyha.comsldkjf.es.  Note that you can't use '/mask' AND '1-4,7,100-' style IP ranges. If the machine only has an IPv6 address, add the Nmap -6 flag to scan that.
+Failed to resolve given hostname/IP: pepepepepepe.nz.  Note that you can't use '/mask' AND '1-4,7,100-' style IP ranges. If the machine only has an IPv6 address, add the Nmap -6 flag to scan that.
+Nmap scan report for google.com (173.194.112.72)
+Host is up (0.0078s latency).
+Other addresses for google.com (not scanned): 173.194.112.73 173.194.112.78 173.194.112.71 173.194.112.66 173.194.112.64 173.194.112.65 173.194.112.68 173.194.112.70 173.194.112.67 173.194.112.69
+rDNS record for 173.194.112.72: fra07s29-in-f8.1e100.net
+PORT     STATE    SERVICE    VERSION
+19/tcp   filtered chargen
+53/tcp   filtered domain
+80/tcp   open     http       Google httpd 2.0 (GFE)
+443/tcp  open     ssl/http   Google httpd 2.0 (GFE)
+8080/tcp filtered http-proxy
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for keepnote.org (97.74.144.172)
+Host is up (0.022s latency).
+rDNS record for 97.74.144.172: p3nlh172.shr.prod.phx3.secureserver.net
+PORT     STATE    SERVICE    VERSION
+19/tcp   filtered chargen
+53/tcp   filtered domain
+80/tcp   open     http       Apache
+443/tcp  filtered https
+8080/tcp filtered http-proxy
+Service Info: Host: default.secureserver.net
+
+Nmap scan report for google-public-dns-a.google.com (8.8.8.8)
+Host is up (0.0045s latency).
+PORT     STATE    SERVICE    VERSION
+19/tcp   filtered chargen
+53/tcp   open     tcpwrapped
+80/tcp   filtered http
+443/tcp  filtered https
+8080/tcp filtered http-proxy
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+# Nmap done at Mon Nov 11 17:01:08 2013 -- 3 IP addresses (3 hosts up) scanned in 19.62 seconds

@@ -185,11 +185,17 @@ def import_nmap(node, filename, index=None, task=None):
         hnames = []
         for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):
             hnames.append([hostname.getAttribute("name"),hostname.getAttribute("type")]) 
-
-        print "Hostname %s - %s" % (hnames[0][0],hnames[0][1])
-
-        newhostnode = node.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,hnames[0][0]),index)
-        newhostnode.set_attr("title",("%s - %s") % (haddress,hnames[0][0]))
+        
+        if len(hnames)==0:
+            mainhostname = haddress
+        else:
+            if hnames[0][0] is not None:
+                mainhostname = hnames[0][0]
+            else:
+                mainhostname = haddress
+        
+        newhostnode = node.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
+        newhostnode.set_attr("title",("%s - %s") % (haddress,mainhostname))
         
         # Create a page with status reason of the host and other information
         statusnode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Status Info",None)
@@ -201,51 +207,66 @@ def import_nmap(node, filename, index=None, task=None):
         statusout.write("</body></html>")
         statusout.close()
         
+        # Change the color of the Host depending on the state (Up: Green, Dow: Red)
+        if hstatus == "up":
+            # Green
+            newhostnode.set_attr("icon","folder-green.png")
+            newhostnode.set_attr("title_fgcolor","#00AA00")
+        else:
+            # Red
+            newhostnode.set_attr("icon","folder-red.png")
+            newhostnode.set_attr("title_fgcolor","#AA0000")
+        
         # Create a page with multiple hostnames of this host
-        hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)
-        hostnameout = safefile.open(hostnamenode.get_data_file(),"w",codec="utf-8")
-        hostnameout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
-        for hnametype in hnames:
-            hostnameout.write(("<b>Hostname:</b> %s. <b>Type:</b> %s") % (hnametype[0],hnametype[1]))
-        hostnameout.write("</body></html>")
-        hostnameout.close()
-
+        if len(hnames) > 0:
+            hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)
+            hostnameout = safefile.open(hostnamenode.get_data_file(),"w",codec="utf-8")
+            hostnameout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+            for hnametype in hnames:
+                hostnameout.write(("<b>Hostname:</b> %s. <b>Type:</b> %s<br/>") % (hnametype[0],hnametype[1]))
+            hostnameout.write("</body></html>")
+            hostnameout.close()
+            
+        # Create a folder for the ports information
+        newportfoldernode = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("Ports"),index)
+        newportfoldernode.set_attr("title", ("Ports"))
+        
         for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
             pnumber = port.getAttribute("portid")
             pprotocol = port.getAttribute("protocol")
             pstate = port.getElementsByTagName("state")[0].getAttribute("state")
-            pstateresason = port.getElementsByTagName("state")[0].getAttribute("reason")
+            pstatereason = port.getElementsByTagName("state")[0].getAttribute("reason")
+            pservicename = port.getElementsByTagName("service")[0].getAttribute("name")
+            pserviceproduct = port.getElementsByTagName("service")[0].getAttribute("product")
+            pserviceversion = port.getElementsByTagName("service")[0].getAttribute("version")
+            pserviceostype = port.getElementsByTagName("service")[0].getAttribute("ostype")
             # Create the page node
-            newportchild = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s/%s - %s") % (pnumber,pprotocol,pstate))
-            newportchild.set_attr("title",("%s/%s - %s") % (pnumber,pprotocol,pstate))
+            newportchild = newportfoldernode.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+            newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+            
+            portout = safefile.open(newportchild.get_data_file(),"w",codec="utf-8")
+            portout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+            portout.write(("<b>Port Number:</b> %s. <b>Protocol:</b> %s. <b>State:</b> %s. <b>State Reason:</b> %s<br/>") % (pnumber,pprotocol,pstate,pstatereason))
+            portout.write(("<b>Service:</b> %s. <b>Product:</b> %s. <b>version:</b> %s. <b>OS Type:</b> %s<br/>") % (pservicename,pserviceproduct,pserviceversion,pserviceostype))
+            portout.write("</body></html>")
+            portout.close()
+            
+            # Change the color of the note depending on the state (Open: Green, Closed: Red, Filtered: Orange)
+            if pstate == "open":
+                # Green
+                newportchild.set_attr("icon","note-green.png")
+                newportchild.set_attr("title_fgcolor","#00AA00")
+            elif pstate == "filtered":
+                # Orange
+                newportchild.set_attr("icon","note-orange.png")
+                newportchild.set_attr("title_fgcolor","#ffa300")
+            else:
+                # Red
+                newportchild.set_attr("icon","note-red.png")
+                newportchild.set_attr("title_fgcolor","#AA0000")
 
 
     task.finish()
-
-"""
-    child = node.new_child(notebooklib.CONTENT_TYPE_PAGE, 
-                           os.path.basename(filename), index)
-    child.set_attr("title", os.path.basename(filename)) # remove for 0.6.4
-
-    lines = open(filename).readlines()
-
-
-    out = safefile.open(child.get_data_file(), "w", codec="utf-8")
-    out.write("<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><body>")
-
-    lines = [escape_whitespace(escape(line)) for line in lines]
-    text = "".join(lines)
-
-    # replace newlines
-    text = text.replace(u"\n", u"<br/>")
-    text = text.replace(u"\r", u"")
-
-    out.write(text)
-    out.write(u"</body></html>")
-
-    out.close()
-"""
                      
 
 def escape_whitespace(line):

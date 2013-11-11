@@ -181,6 +181,8 @@ def import_nmap(node, filename, index=None, task=None):
         hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
         hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
         haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
+        hosfirstmatch = hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch")[0].getAttribute("name")
+        print hosfirstmatch
         # Create the folder with the first IP obtained and the fist hostname
         hnames = []
         for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):

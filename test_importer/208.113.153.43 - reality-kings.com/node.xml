@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title_fgcolor</key><string>#00AA00</string>
+  <key>expanded</key><true/>
+  <key>title</key><string>208.113.153.43 - reality-kings.com</string>
+  <key>nodeid</key><string>bd55c8bc-1784-4f1e-a7ea-3550154ace2e</string>
+  <key>modified_time</key><integer>1384211666</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>application/x-notebook-dir</string>
+  <key>created_time</key><integer>1384211666</integer>
+  <key>info_sort_dir</key><integer>1</integer>
+  <key>order</key><integer>4</integer>
+  <key>info_sort</key><string>order</string>
+  <key>icon</key><string>folder-green.png</string>
+</dict>
+</node>

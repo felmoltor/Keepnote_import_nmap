@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.25 scan initiated Mon Nov 11 23:54:19 2013 as: nmap -iL hot_hosts.list -sSV -O -F -T4 -oX hot_hosts.list.xml -v -->
+<nmaprun scanner="nmap" args="nmap -iL hot_hosts.list -sSV -O -F -T4 -oX hot_hosts.list.xml -v" start="1384210459" startstr="Mon Nov 11 23:54:19 2013" version="6.25" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="100" services="7,9,13,21-23,25-26,37,53,79-81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,443-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3000,3128,3306,3389,3986,4899,5000,5009,5051,5060,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1384210459"/>
+<taskend task="Ping Scan" time="1384210459" extrainfo="3 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 3 hosts." time="1384210459"/>
+<taskend task="Parallel DNS resolution of 3 hosts." time="1384210460"/>
+<taskbegin task="SYN Stealth Scan" time="1384210460"/>
+<taskend task="SYN Stealth Scan" time="1384210464" extrainfo="300 total ports"/>
+<taskbegin task="Service scan" time="1384210465"/>
+<taskend task="Service scan" time="1384210587" extrainfo="8 services on 3 hosts"/>
+<taskbegin task="NSE" time="1384210597"/>
+<taskend task="NSE" time="1384210629"/>
+<host starttime="1384210459" endtime="1384210597"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="62.212.83.1" addrtype="ipv4"/>
+<hostnames>
+<hostname name="redtube.com" type="user"/>
+</hostnames>
+<ports><extraports state="filtered" count="98">
+<extrareasons reason="no-responses" count="98"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="nginx" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="nginx" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx</cpe></service></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/>
+<osmatch name="QEMU user mode network gateway" accuracy="94" line="61144">
+<osclass type="general purpose" vendor="QEMU" osfamily="QEMU" accuracy="94"><cpe>cpe:/o:qemu:qemu</cpe></osclass>
+</osmatch>
+<osmatch name="Slingmedia Slingbox AV TV over IP gateway" accuracy="88" line="63951">
+<osclass type="media device" vendor="Sling" osfamily="embedded" accuracy="88"><cpe>cpe:/h:slingmedia:slingbox_av</cpe></osclass>
+</osmatch>
+<osmatch name="3Com SuperStack 3 Switch 4300, Dell PowerEdge 2650 remote access controller, Samsung ML-2571N or 6555N printer, or Xerox Phaser 3125N printer" accuracy="87" line="697">
+<osclass type="switch" vendor="3Com" osfamily="embedded" accuracy="87"><cpe>cpe:/h:3com:superstack_3_switch_4300</cpe></osclass>
+<osclass type="remote management" vendor="Dell" osfamily="embedded" accuracy="87"><cpe>cpe:/h:dell:poweredge_2650</cpe></osclass>
+<osclass type="printer" vendor="Samsung" osfamily="embedded" accuracy="87"><cpe>cpe:/h:samsung:ml-2571n</cpe><cpe>cpe:/h:samsung:6555n</cpe></osclass>
+<osclass type="printer" vendor="Xerox" osfamily="embedded" accuracy="87"><cpe>cpe:/h:xerox:phaser_3125n</cpe></osclass>
+</osmatch>
+<osmatch name="Bay Networks BayStack 450 switch (software version 3.1.0.22)" accuracy="87" line="7010">
+<osclass type="switch" vendor="Bay Networks" osfamily="embedded" accuracy="87"><cpe>cpe:/h:baynetworks:baystack_450</cpe></osclass>
+</osmatch>
+<osmatch name="Bay Networks BayStack 450 switch (software version 4.2.0.16)" accuracy="87" line="7028">
+<osclass type="switch" vendor="Bay Networks" osfamily="embedded" accuracy="87"><cpe>cpe:/h:baynetworks:baystack_450</cpe></osclass>
+</osmatch>
+<osmatch name="Dell 1815dn printer" accuracy="87" line="16171">
+<osclass type="printer" vendor="Dell" osfamily="embedded" accuracy="87"><cpe>cpe:/h:dell:1815dn</cpe></osclass>
+</osmatch>
+<osmatch name="Xerox WorkCentre 4150 printer" accuracy="87" line="69482">
+<osclass type="printer" vendor="Xerox" osfamily="embedded" accuracy="87"><cpe>cpe:/h:xerox:workcentre_4150</cpe></osclass>
+</osmatch>
+<osmatch name="Tyco 24 Port SNMP Managed Switch" accuracy="87" line="73062">
+<osclass type="switch" vendor="Tyco" osfamily="embedded" accuracy="87"/>
+</osmatch>
+<osmatch name="Cabletron ELS100-24TXM Switch or Icom IC-7800 radio transceiver" accuracy="86" line="9195">
+<osclass type="switch" vendor="Cabletron" osfamily="embedded" accuracy="86"><cpe>cpe:/h:cabletron:els100-24txm</cpe></osclass>
+<osclass type="specialized" vendor="Icom" osfamily="embedded" accuracy="86"><cpe>cpe:/h:icom:ic-7800</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco Catalyst 1900 switch or RAD IPMUX-1 TDM-over-IP multiplexer" accuracy="86" line="10571">
+<osclass type="switch" vendor="Cisco" osfamily="embedded" accuracy="86"><cpe>cpe:/h:cisco:catalyst_1900</cpe></osclass>
+<osclass type="switch" vendor="RAD Data Communications" osfamily="embedded" accuracy="86"/>
+</osmatch>
+</os>
+<tcpsequence index="17" difficulty="Good luck!" values="8F30401,8F5F201,8F9DA01,8FCC801,8FFB601,902A401"/>
+<ipidsequence class="Incremental" values="45FF,4602,4605,4608,460B,460E"/>
+<tcptssequence class="none returned (unsupported)"/>
+<times srtt="20909" rttvar="25975" to="124809"/>
+</host>
+<host starttime="1384210459" endtime="1384210629"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="74.81.184.54" addrtype="ipv4"/>
+<hostnames>
+<hostname name="pornotube.com" type="user"/>
+<hostname name="www.funnyextreme.com" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="99">
+<extrareasons reason="no-responses" count="99"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" servicefp="SF-Port80-TCP:V=6.25%I=7%D=11/11%Time=52816028%P=x86_64-unknown-linux-gnu%r(GetRequest,1C84,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2022:54:31\x20GMT\r\nServer:\x20Apache\r\nX-Powered-By:\x20PHP/5\.3\.5\x20ZendServer\r\nSet-Cookie:\x20detectedIfMobile=1;\x20path=/;\x20domain=\.pornotube\.com\r\nSet-Cookie:\x20pornotube_session_key=9fb0de3536887bb21a6f587a47795cf7;\x20expires=Mon,\x2011-Nov-2013\x2023:54:31\x20GMT;\x20path=/;\x20domain=\.pornotube\.com\r\nTube-Cluster:\x20TUBE16\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;!DOCTYPE\x20html\x20&gt;\r\n&lt;html\x20&gt;\r\n&lt;head&gt;\r\n\x20\x20\x20\x20&lt;title&gt;PornoTube\.com\x20-\x20Age\x20Verification\x20-\x20\x20Free\x20Porn\x20Videos,\x20Sex\x20Movies\x20-\x20Adult\x20Videos,\x20Tits,\x20Pussy,\x20XXX&lt;/title&gt;\r\n\x20\x20\x20\x20&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=utf-8\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20name=\&quot;robots\&quot;\x20content=\&quot;noindex,\x20follow\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20http-equiv=\&quot;imagetoolbar\&quot;\x20content=\&quot;false\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20name=\&quot;MSSmartTagsPreventParsing\&quot;\x20content=\&quot;true\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20name=\&quot;RATING\&quot;\x20content=\&quot;RTA-5042-1996-1400-1577-RTA\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20http-equiv=\&quot;pics-Label\&quot;\x20content=&apos;\(pics-1\.1\x20\&quot;http:&quot;)%r(HTTPOptions,20C6,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2022:54:32\x20GMT\r\nServer:\x20Apache\r\nX-Powered-By:\x20PHP/5\.3\.5\x20ZendServer\r\nSet-Cookie:\x20detectedIfMobile=1;\x20path=/;\x20domain=\.pornotube\.com\r\nSet-Cookie:\x20pornotube_session_key=05cbac069f04577eb6785338048adabd;\x20expires=Mon,\x2011-Nov-2013\x2023:54:32\x20GMT;\x20path=/;\x20domain=\.pornotube\.com\r\nTube-Cluster:\x20TUBE16\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;!DOCTYPE\x20html\x20&gt;\r\n&lt;html\x20&gt;\r\n&lt;head&gt;\r\n\x20\x20\x20\x20&lt;title&gt;PornoTube\.com\x20-\x20Age\x20Verification\x20-\x20\x20Free\x20Porn\x20Videos,\x20Sex\x20Movies\x20-\x20Adult\x20Videos,\x20Tits,\x20Pussy,\x20XXX&lt;/title&gt;\r\n\x20\x20\x20\x20&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=utf-8\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20name=\&quot;robots\&quot;\x20content=\&quot;noindex,\x20follow\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20http-equiv=\&quot;imagetoolbar\&quot;\x20content=\&quot;false\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20name=\&quot;MSSmartTagsPreventParsing\&quot;\x20content=\&quot;true\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20name=\&quot;RATING\&quot;\x20content=\&quot;RTA-5042-1996-1400-1577-RTA\&quot;\x20/&gt;\r\n\x20\x20\x20\x20&lt;meta\x20http-equiv=\&quot;pics-Label\&quot;\x20content=&apos;\(pics-1\.1\x20\&quot;http:&quot;);" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/>
+<osmatch name="QEMU user mode network gateway" accuracy="88" line="61144">
+<osclass type="general purpose" vendor="QEMU" osfamily="QEMU" accuracy="88"><cpe>cpe:/o:qemu:qemu</cpe></osclass>
+</osmatch>
+</os>
+<tcpsequence index="27" difficulty="Good luck!" values="8F4F801,8F8E001,8FBCE01,8FDC201,901AA01,9039E01"/>
+<ipidsequence class="Incremental" values="4601,4604,4607,4609,460D,460F"/>
+<tcptssequence class="none returned (unsupported)"/>
+<times srtt="66251" rttvar="58112" to="298699"/>
+</host>
+<host starttime="1384210459" endtime="1384210629"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="208.113.153.43" addrtype="ipv4"/>
+<hostnames>
+<hostname name="reality-kings.com" type="user"/>
+<hostname name="apache2-bongo.essex.dreamhost.com" type="PTR"/>
+</hostnames>
+<ports><extraports state="filtered" count="95">
+<extrareasons reason="no-responses" count="95"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="ProFTPD" method="probed" conf="10"><cpe>cpe:/a:proftpd:proftpd</cpe></service></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="OpenSSH" version="5.5p1 Debian 6+squeeze2" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.5p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="smtp" product="Postfix smtpd" hostname="essex.dreamhost.com" method="probed" conf="10"><cpe>cpe:/a:postfix:postfix</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" servicefp="SF-Port80-TCP:V=6.25%I=7%D=11/11%Time=52816027%P=x86_64-unknown-linux-gnu%r(GetRequest,23B,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2022:54:31\x20GMT\r\nServer:\x20Apache\r\nLast-Modified:\x20Fri,\x2006\x20Aug\x202010\x2021:48:01\x20GMT\r\nETag:\x20\&quot;153-48d2e9eea2640\&quot;\r\nAccept-Ranges:\x20bytes\r\nContent-Length:\x20339\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;\n&lt;head&gt;\n&lt;META\x20HTTP-EQUIV=\&quot;Pragma\&quot;\x20CONTENT=\&quot;no_cache\&quot;&gt;\n&lt;title&gt;Site\x20Temporarily\x20Unavailable&lt;/title&gt;\n&lt;/head&gt;\n\n&lt;h1&gt;Site\x20Temporarily\x20Unavailable&lt;/h1&gt;\n\nWe\x20apologize\x20for\x20the\x20inconvenience\.\x20Please\x20contact\x20the\x20webmaster/\ntech\x20support\x20immediately\x20to\x20have\x20them\x20rectify\x20this\.&lt;p&gt;\n\n&lt;font\x20size=2&gt;error\x20id:\x20\&quot;bad_httpd_conf\&quot;&lt;/font&gt;\n\n&lt;/body&gt;\n&lt;/html&gt;\n\n&quot;)%r(HTTPOptions,A5,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2022:54:32\x20GMT\r\nServer:\x20Apache\r\nAllow:\x20GET,HEAD,POST,OPTIONS\r\nContent-Length:\x200\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&quot;)%r(RTSPRequest,A5,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2022:54:32\x20GMT\r\nServer:\x20Apache\r\nAllow:\x20GET,HEAD,POST,OPTIONS\r\nContent-Length:\x200\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&quot;)%r(FourOhFourRequest,242,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nDate:\x20Mon,\x2011\x20Nov\x202013\x2022:54:37\x20GMT\r\nServer:\x20Apache\r\nLast-Modified:\x20Fri,\x2006\x20Aug\x202010\x2021:48:01\x20GMT\r\nETag:\x20\&quot;153-48d2e9eea2640\&quot;\r\nAccept-Ranges:\x20bytes\r\nContent-Length:\x20339\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;html&gt;\n&lt;head&gt;\n&lt;META\x20HTTP-EQUIV=\&quot;Pragma\&quot;\x20CONTENT=\&quot;no_cache\&quot;&gt;\n&lt;title&gt;Site\x20Temporarily\x20Unavailable&lt;/title&gt;\n&lt;/head&gt;\n\n&lt;h1&gt;Site\x20Temporarily\x20Unavailable&lt;/h1&gt;\n\nWe\x20apologize\x20for\x20the\x20inconvenience\.\x20Please\x20contact\x20the\x20webmaster/\ntech\x20support\x20immediately\x20to\x20have\x20them\x20rectify\x20this\.&lt;p&gt;\n\n&lt;font\x20size=2&gt;error\x20id:\x20\&quot;bad_httpd_conf\&quot;&lt;/font&gt;\n\n&lt;/body&gt;\n&lt;/html&gt;\n\n&quot;);" method="table" conf="3"/></port>
+<port protocol="tcp" portid="587"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="smtp" product="Postfix smtpd" hostname="essex.dreamhost.com" method="probed" conf="10"><cpe>cpe:/a:postfix:postfix</cpe></service></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="21"/>
+<osmatch name="QEMU user mode network gateway" accuracy="88" line="61144">
+<osclass type="general purpose" vendor="QEMU" osfamily="QEMU" accuracy="88"><cpe>cpe:/o:qemu:qemu</cpe></osclass>
+</osmatch>
+</os>
+<tcpsequence index="25" difficulty="Good luck!" values="8F3FE01,8F7E601,8FAD401,8FEBC01,900B001,9049801"/>
+<ipidsequence class="Incremental" values="4600,4603,4606,460A,460C,4610"/>
+<tcptssequence class="none returned (unsupported)"/>
+<times srtt="67082" rttvar="59016" to="303146"/>
+</host>
+<runstats><finished time="1384210631" timestr="Mon Nov 11 23:57:11 2013" elapsed="172.64" summary="Nmap done at Mon Nov 11 23:57:11 2013; 3 IP addresses (3 hosts up) scanned in 172.64 seconds" exit="success"/><hosts up="3" down="0" total="3"/>
+</runstats>
+</nmaprun>

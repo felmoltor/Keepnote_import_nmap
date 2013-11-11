@@ -19,10 +19,10 @@
   <key>content_type</key><string>application/x-notebook-dir</string>
   <key>created_time</key><integer>1384112947</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>title</key><string>nmap Test</string>
+  <key>title</key><string>NMap Test</string>
   <key>column_widths</key><dict>
     <key>created_time</key><integer>150</integer>
-    <key>modified_time</key><integer>764</integer>
+    <key>modified_time</key><integer>733</integer>
     <key>title</key><integer>150</integer>
   </dict>
   <key>attr_defs</key><array>

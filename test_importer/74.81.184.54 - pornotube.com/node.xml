@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title_fgcolor</key><string>#00AA00</string>
+  <key>expanded</key><true/>
+  <key>title</key><string>74.81.184.54 - pornotube.com</string>
+  <key>nodeid</key><string>350f41b4-ac06-4475-bad8-18ba86e2115f</string>
+  <key>modified_time</key><integer>1384211665</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>application/x-notebook-dir</string>
+  <key>created_time</key><integer>1384211665</integer>
+  <key>order</key><integer>3</integer>
+  <key>icon</key><string>folder-green.png</string>
+</dict>
+</node>

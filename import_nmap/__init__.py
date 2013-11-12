@@ -178,7 +178,9 @@ def get_os_icon(hos):
     elif (hlos.find("qemu") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/qemu.png" % mypath
     elif (hlos.find("blue coat") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
-        return "%s/icons/qemu.png" % mypath
+        return "%s/icons/bluecoat.png" % mypath
+    elif (hlos.find("juniper") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/juniper.png" % mypath
     else:
         return None    
 
@@ -225,6 +227,7 @@ def import_nmap(node, filename, index=None, task=None):
                 if oscount == 0:
                     hosfirstmatch = osname
                     icon = get_os_icon(hosfirstmatch)
+                oscount += 1
         
         # Create the folder with the first IP obtained and the fist hostname
         hnames = []
@@ -253,36 +256,41 @@ def import_nmap(node, filename, index=None, task=None):
         statusout.write("</body></html>")
         statusout.close()
         
-        osinfonode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"OS Information",None)
-        osinfonode = safefile.open(osinfonode.get_data_file(),"w",codec="utf-8")
-        osinfonode.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
         
-        if icon is not None:
-            osinfonode.write("<br/>")
-            osinfonode.write("<img src=\"%s\"/><br/>" % icon)
+        if len(hostnode.getElementsByTagName("os")) > 0:
+            osinfonode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"OS Information",None)
+            osinfonode = safefile.open(osinfonode.get_data_file(),"w",codec="utf-8")
+            osinfonode.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
             
-        for os in detectedos:
-            osinfonode.write("-----------------------------------<br/>")
-            osinfonode.write("<b>OS Name:</b> %s<br/>" % os[0])
-            osinfonode.write("<b>OS Accuracy:</b> %s<br/>" % os[1])
-            osinfonode.write("<b>OS Type:</b> %s<br/>" % os[2])
-            osinfonode.write("<b>OS Vendor:</b> %s<br/>" % os[3])
-            osinfonode.write("<b>OS Family:</b> %s<br/>" % os[4])
-            osinfonode.write("-----------------------------------<br/>")
-        
-        osinfonode.write("</body></html>")
-        osinfonode.close()
-       
-        # Change the color of the Host depending on the state (Up: Green, Dow: Red)
-        if hstatus == "up":
-            # Green
-            newhostnode.set_attr("icon","folder-green.png")
-            newhostnode.set_attr("title_fgcolor","#00AA00")
+            if icon is not None:
+                osinfonode.write("<br/>")
+                osinfonode.write("<img src=\"%s\"/><br/>" % icon)
+                
+                
+            for os in detectedos:
+                osinfonode.write("-----------------------------------<br/>")
+                osinfonode.write("<b>OS Name:</b> %s<br/>" % os[0])
+                osinfonode.write("<b>OS Accuracy:</b> %s<br/>" % os[1])
+                osinfonode.write("<b>OS Type:</b> %s<br/>" % os[2])
+                osinfonode.write("<b>OS Vendor:</b> %s<br/>" % os[3])
+                osinfonode.write("<b>OS Family:</b> %s<br/>" % os[4])
+                osinfonode.write("-----------------------------------<br/>")
+            
+            osinfonode.write("</body></html>")
+            osinfonode.close()
+        if icon is not None:
+            newhostnode.set_attr("icon",icon)
         else:
-            # Red
-            newhostnode.set_attr("icon","folder-red.png")
-            newhostnode.set_attr("title_fgcolor","#AA0000")
-    
+            # Change the color of the Host depending on the state (Up: Green, Dow: Red)
+            if hstatus == "up":
+                # Green
+                newhostnode.set_attr("icon","folder-green.png")
+                newhostnode.set_attr("title_fgcolor","#00AA00")
+            else:
+                # Red
+                newhostnode.set_attr("icon","folder-red.png")
+                newhostnode.set_attr("title_fgcolor","#AA0000")
+        
         # Create a page with multiple hostnames of this host
         if len(hnames) > 0:
             hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)

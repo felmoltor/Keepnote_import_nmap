@@ -177,6 +177,8 @@ def get_os_icon(hos):
         return "%s/icons/linux.png" % mypath
     elif (hlos.find("qemu") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/qemu.png" % mypath
+    elif (hlos.find("blue coat") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/qemu.png" % mypath
     else:
         return None    
 
@@ -291,16 +293,16 @@ def import_nmap(node, filename, index=None, task=None):
             hostnameout.write("</body></html>")
             hostnameout.close()
             
-        # Create a folder for TCP Ports
-        tcpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("TCP"),index)
-        tcpportfolder.set_attr("title", ("TCP"))
-        
-        # Create a folder for UDP Ports
-        udpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("UDP"),index)
-        udpportfolder.set_attr("title", ("UDP"))
-        
         # If this host has any port information
         if len(hostnode.getElementsByTagName("ports")) > 0:
+            # Create a folder for TCP Ports
+            tcpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("TCP"),index)
+            tcpportfolder.set_attr("title", ("TCP"))
+            
+            # Create a folder for UDP Ports
+            udpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("UDP"),index)
+            udpportfolder.set_attr("title", ("UDP"))
+            
             for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
                 pnumber = port.getAttribute("portid")
                 pprotocol = port.getAttribute("protocol")

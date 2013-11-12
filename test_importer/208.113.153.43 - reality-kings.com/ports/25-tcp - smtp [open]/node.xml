@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title_fgcolor</key><string>#00AA00</string>
+  <key>title</key><string>25/tcp - smtp [open]</string>
+  <key>nodeid</key><string>0ff81536-acf3-4c74-9666-35d50a792d68</string>
+  <key>modified_time</key><integer>1384211666</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1384211666</integer>
+  <key>order</key><integer>2</integer>
+  <key>icon</key><string>note-green.png</string>
+</dict>
+</node>

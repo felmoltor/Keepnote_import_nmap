@@ -199,15 +199,20 @@ def import_nmap(node, filename, index=None, task=None):
     nmapxml = minidom.parse(filename)
 
     for hostnode in nmapxml.getElementsByTagName("host"):
+        
+        hosfirstmatch = None
+        icon = None
+        detectedos = []
+        
         hstartime = hostnode.getAttribute("starttime")
         hendtime = hostnode.getAttribute("endtime")
         hstatus = hostnode.getElementsByTagName("status")[0].getAttribute("state")
         hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
         hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
         haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
-        hosfirstmatch = None
-        detectedos = []
+        
         if len(hostnode.getElementsByTagName("os")) > 0:
+            oscount = 0
             for osmatch in hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch"):
                 osname = osmatch.getAttribute("name")
                 osaccuracy = osmatch.getAttribute("accuracy")
@@ -215,16 +220,16 @@ def import_nmap(node, filename, index=None, task=None):
                 osvendor = osmatch.getElementsByTagName("osclass")[0].getAttribute("vendor")
                 ostype = osmatch.getElementsByTagName("osclass")[0].getAttribute("type")
                 detectedos.append([osname,osaccuracy,ostype,osvendor,osfamily])
-                
-            hosfirstmatch = hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch")[0].getAttribute("name")
-            hosfirstmatch = hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch")[0].getAttribute("name")
-            
+                if oscount == 0:
+                    hosfirstmatch = osname
+                    icon = get_os_icon(hosfirstmatch)
         
         # Create the folder with the first IP obtained and the fist hostname
         hnames = []
-        for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):
-            hnames.append([hostname.getAttribute("name"),hostname.getAttribute("type")]) 
-        
+        if len(hostnode.getElementsByTagName("hostnames")) > 0:
+            for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):
+                hnames.append([hostname.getAttribute("name"),hostname.getAttribute("type")]) 
+            
         if len(hnames)==0:
             mainhostname = haddress
         else:
@@ -246,7 +251,6 @@ def import_nmap(node, filename, index=None, task=None):
         statusout.write("</body></html>")
         statusout.close()
         
-        icon = get_os_icon(hosfirstmatch)
         osinfonode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"OS Information",None)
         osinfonode = safefile.open(osinfonode.get_data_file(),"w",codec="utf-8")
         osinfonode.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
@@ -295,46 +299,48 @@ def import_nmap(node, filename, index=None, task=None):
         udpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("UDP"),index)
         udpportfolder.set_attr("title", ("UDP"))
         
-        for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
-            pnumber = port.getAttribute("portid")
-            pprotocol = port.getAttribute("protocol")
-            pstate = port.getElementsByTagName("state")[0].getAttribute("state")
-            pstatereason = port.getElementsByTagName("state")[0].getAttribute("reason")
-            pservicename = port.getElementsByTagName("service")[0].getAttribute("name")
-            pserviceproduct = port.getElementsByTagName("service")[0].getAttribute("product")
-            pserviceversion = port.getElementsByTagName("service")[0].getAttribute("version")
-            pserviceostype = port.getElementsByTagName("service")[0].getAttribute("ostype")
-            
-            newportchild = None
-            if pprotocol.upper() == "TCP":
-                # Create the page node fot TCP
-                newportchild = tcpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
-                newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
-            else:
-                # Create the page node fot UDP
-                newportchild = udpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
-                newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+        # If this host has any port information
+        if len(hostnode.getElementsByTagName("ports")) > 0:
+            for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
+                pnumber = port.getAttribute("portid")
+                pprotocol = port.getAttribute("protocol")
+                pstate = port.getElementsByTagName("state")[0].getAttribute("state")
+                pstatereason = port.getElementsByTagName("state")[0].getAttribute("reason")
+                pservicename = port.getElementsByTagName("service")[0].getAttribute("name")
+                pserviceproduct = port.getElementsByTagName("service")[0].getAttribute("product")
+                pserviceversion = port.getElementsByTagName("service")[0].getAttribute("version")
+                pserviceostype = port.getElementsByTagName("service")[0].getAttribute("ostype")
                 
-            portout = safefile.open(newportchild.get_data_file(),"w",codec="utf-8")
-            portout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
-            portout.write(("<b>Port Number:</b> %s. <b>Protocol:</b> %s. <b>State:</b> %s. <b>State Reason:</b> %s<br/>") % (pnumber,pprotocol,pstate,pstatereason))
-            portout.write(("<b>Service:</b> %s. <b>Product:</b> %s. <b>version:</b> %s. <b>OS Type:</b> %s<br/>") % (pservicename,pserviceproduct,pserviceversion,pserviceostype))
-            portout.write("</body></html>")
-            portout.close()
-            
-            # Change the color of the note depending on the state (Open: Green, Closed: Red, Filtered: Orange)
-            if pstate == "open":
-                # Green
-                newportchild.set_attr("icon","note-green.png")
-                newportchild.set_attr("title_fgcolor","#00AA00")
-            elif pstate == "filtered" or pstate == "open|filtered":
-                # Orange
-                newportchild.set_attr("icon","note-orange.png")
-                newportchild.set_attr("title_fgcolor","#ffa300")
-            else:
-                # Red
-                newportchild.set_attr("icon","note-red.png")
-                newportchild.set_attr("title_fgcolor","#AA0000")
+                newportchild = None
+                if pprotocol.upper() == "TCP":
+                    # Create the page node fot TCP
+                    newportchild = tcpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                else:
+                    # Create the page node fot UDP
+                    newportchild = udpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    
+                portout = safefile.open(newportchild.get_data_file(),"w",codec="utf-8")
+                portout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+                portout.write(("<b>Port Number:</b> %s. <b>Protocol:</b> %s. <b>State:</b> %s. <b>State Reason:</b> %s<br/>") % (pnumber,pprotocol,pstate,pstatereason))
+                portout.write(("<b>Service:</b> %s. <b>Product:</b> %s. <b>version:</b> %s. <b>OS Type:</b> %s<br/>") % (pservicename,pserviceproduct,pserviceversion,pserviceostype))
+                portout.write("</body></html>")
+                portout.close()
+                
+                # Change the color of the note depending on the state (Open: Green, Closed: Red, Filtered: Orange)
+                if pstate == "open":
+                    # Green
+                    newportchild.set_attr("icon","note-green.png")
+                    newportchild.set_attr("title_fgcolor","#00AA00")
+                elif pstate == "filtered" or pstate == "open|filtered":
+                    # Orange
+                    newportchild.set_attr("icon","note-orange.png")
+                    newportchild.set_attr("title_fgcolor","#ffa300")
+                else:
+                    # Red
+                    newportchild.set_attr("icon","note-red.png")
+                    newportchild.set_attr("title_fgcolor","#AA0000")
 
 
     task.finish()

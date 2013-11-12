@@ -278,6 +278,8 @@ def import_nmap(node, filename, index=None, task=None):
             
             osinfonode.write("</body></html>")
             osinfonode.close()
+        
+        # Icon selection
         if icon is not None:
             newhostnode.set_attr("icon",icon)
         else:
@@ -285,12 +287,18 @@ def import_nmap(node, filename, index=None, task=None):
             if hstatus == "up":
                 # Green
                 newhostnode.set_attr("icon","folder-green.png")
-                newhostnode.set_attr("title_fgcolor","#00AA00")
             else:
                 # Red
                 newhostnode.set_attr("icon","folder-red.png")
-                newhostnode.set_attr("title_fgcolor","#AA0000")
-        
+                
+        # Change the color of the Host depending on the state (Up: Green, Dow: Red)
+        if hstatus == "up":
+            # Green
+            newhostnode.set_attr("title_fgcolor","#00AA00")
+        else:
+            # Red
+            newhostnode.set_attr("title_fgcolor","#AA0000")
+            
         # Create a page with multiple hostnames of this host
         if len(hnames) > 0:
             hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)

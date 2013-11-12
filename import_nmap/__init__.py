@@ -22,13 +22,13 @@
 #
 
 # python imports
-import codecs
+# import codecs
 import gettext
 import mimetypes
 import os
 import sys
-import re
-from xml.sax.saxutils import escape
+# import re
+# from xml.sax.saxutils import escape
 from xml.dom import minidom
 
 _ = gettext.gettext
@@ -101,7 +101,6 @@ class Extension (extension.Extension):
             </ui>
             """)
 
-
     def on_import_nmap(self, window, notebook):
         """Callback from gui for importing a plain text file"""
         
@@ -155,6 +154,31 @@ class Extension (extension.Extension):
                 self.app.error("unknown error", e, sys.exc_info()[2])
             return False
 
+def get_os_icon(hos):
+    hlos = hos.lower()
+    mypath = os.path.dirname(os.path.abspath(__file__))
+    
+    # NOTE: For now, not using re as this produces a slower import
+    if (hlos.find("freebsd") >= 0): #.search('.*freebsd.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/freebsd.png" % mypath
+    elif (hlos.find("windows") >= 0 and os.find("xp") >= 0): #(re.search('.*windows\s+xp.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/winxp.png" % mypath
+    elif (hlos.find("windows") >= 0 and os.find("nt") >= 0): # (re.search('.*windows\s+nt.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/winxp.png" % mypath
+    elif (hlos.find("windows") >= 0 and os.find("vista") >= 0): # (re.search('.*windows\s+vista.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/win7.png" % mypath
+    elif (hlos.find("windows") >= 0 and os.find("7") >= 0): # (re.search('.*windows\s+7.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/win7.png" % mypath
+    elif (hlos.find("mac") >= 0 and os.find("os") >= 0): # (re.search('.*mac\s+os.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/mac.png" % mypath
+    elif (hlos.find("solaris") >= 0): # (re.search('.*solaris.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/solaris.png" % mypath
+    elif (hlos.find("linux") >= 0): # (re.search('.*linux.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/linux.png" % mypath
+    elif (hlos.find("qemu") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/qemu.png" % mypath
+    else:
+        return None    
 
 
 def import_nmap(node, filename, index=None, task=None):
@@ -181,8 +205,21 @@ def import_nmap(node, filename, index=None, task=None):
         hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
         hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
         haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
-        hosfirstmatch = hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch")[0].getAttribute("name")
-        print hosfirstmatch
+        hosfirstmatch = None
+        detectedos = []
+        if len(hostnode.getElementsByTagName("os")) > 0:
+            for osmatch in hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch"):
+                osname = osmatch.getAttribute("name")
+                osaccuracy = osmatch.getAttribute("accuracy")
+                osfamily = osmatch.getElementsByTagName("osclass")[0].getAttribute("family")
+                osvendor = osmatch.getElementsByTagName("osclass")[0].getAttribute("vendor")
+                ostype = osmatch.getElementsByTagName("osclass")[0].getAttribute("type")
+                detectedos.append([osname,osaccuracy,ostype,osvendor,osfamily])
+                
+            hosfirstmatch = hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch")[0].getAttribute("name")
+            hosfirstmatch = hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch")[0].getAttribute("name")
+            
+        
         # Create the folder with the first IP obtained and the fist hostname
         hnames = []
         for hostname in hostnode.getElementsByTagName("hostnames")[0].getElementsByTagName("hostname"):
@@ -200,7 +237,7 @@ def import_nmap(node, filename, index=None, task=None):
         newhostnode.set_attr("title",("%s - %s") % (haddress,mainhostname))
         
         # Create a page with status reason of the host and other information
-        statusnode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Status Info",None)
+        statusnode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Status Information",None)
         statusout = safefile.open(statusnode.get_data_file(),"w",codec="utf-8")
         statusout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
         statusout.write("<b>Status:</b> %s<br/>" % hstatus)
@@ -209,6 +246,27 @@ def import_nmap(node, filename, index=None, task=None):
         statusout.write("</body></html>")
         statusout.close()
         
+        icon = get_os_icon(hosfirstmatch)
+        osinfonode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"OS Information",None)
+        osinfonode = safefile.open(osinfonode.get_data_file(),"w",codec="utf-8")
+        osinfonode.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
+        
+        if icon is not None:
+            osinfonode.write("<br/>")
+            osinfonode.write("<img src=\"%s\"/><br/>" % icon)
+            
+        for os in detectedos:
+            osinfonode.write("-----------------------------------<br/>")
+            osinfonode.write("<b>OS Name:</b> %s<br/>" % os[0])
+            osinfonode.write("<b>OS Accuracy:</b> %s<br/>" % os[1])
+            osinfonode.write("<b>OS Type:</b> %s<br/>" % os[2])
+            osinfonode.write("<b>OS Vendor:</b> %s<br/>" % os[3])
+            osinfonode.write("<b>OS Family:</b> %s<br/>" % os[4])
+            osinfonode.write("-----------------------------------<br/>")
+        
+        osinfonode.write("</body></html>")
+        osinfonode.close()
+       
         # Change the color of the Host depending on the state (Up: Green, Dow: Red)
         if hstatus == "up":
             # Green
@@ -218,7 +276,7 @@ def import_nmap(node, filename, index=None, task=None):
             # Red
             newhostnode.set_attr("icon","folder-red.png")
             newhostnode.set_attr("title_fgcolor","#AA0000")
-        
+    
         # Create a page with multiple hostnames of this host
         if len(hnames) > 0:
             hostnamenode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"Hostnames",None)
@@ -229,9 +287,13 @@ def import_nmap(node, filename, index=None, task=None):
             hostnameout.write("</body></html>")
             hostnameout.close()
             
-        # Create a folder for the ports information
-        newportfoldernode = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("Ports"),index)
-        newportfoldernode.set_attr("title", ("Ports"))
+        # Create a folder for TCP Ports
+        tcpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("TCP"),index)
+        tcpportfolder.set_attr("title", ("TCP"))
+        
+        # Create a folder for UDP Ports
+        udpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("UDP"),index)
+        udpportfolder.set_attr("title", ("UDP"))
         
         for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
             pnumber = port.getAttribute("portid")
@@ -242,10 +304,17 @@ def import_nmap(node, filename, index=None, task=None):
             pserviceproduct = port.getElementsByTagName("service")[0].getAttribute("product")
             pserviceversion = port.getElementsByTagName("service")[0].getAttribute("version")
             pserviceostype = port.getElementsByTagName("service")[0].getAttribute("ostype")
-            # Create the page node
-            newportchild = newportfoldernode.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
-            newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
             
+            newportchild = None
+            if pprotocol.upper() == "TCP":
+                # Create the page node fot TCP
+                newportchild = tcpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+            else:
+                # Create the page node fot UDP
+                newportchild = udpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                
             portout = safefile.open(newportchild.get_data_file(),"w",codec="utf-8")
             portout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
             portout.write(("<b>Port Number:</b> %s. <b>Protocol:</b> %s. <b>State:</b> %s. <b>State Reason:</b> %s<br/>") % (pnumber,pprotocol,pstate,pstatereason))
@@ -258,7 +327,7 @@ def import_nmap(node, filename, index=None, task=None):
                 # Green
                 newportchild.set_attr("icon","note-green.png")
                 newportchild.set_attr("title_fgcolor","#00AA00")
-            elif pstate == "filtered":
+            elif pstate == "filtered" or pstate == "open|filtered":
                 # Orange
                 newportchild.set_attr("icon","note-orange.png")
                 newportchild.set_attr("title_fgcolor","#ffa300")

@@ -1,0 +1,11 @@
+# Nmap 6.25 scan initiated Mon Nov 11 17:53:17 2013 as: nmap -iL host.3.list -oA host.3_2.xml -p 80,8080,53,443,19,U:161 -sSU -v
+# Ports scanned: TCP(5;19,53,80,443,8080) UDP(6;19,53,80,161,443,8080) SCTP(0;) PROTOCOLS(0;)
+Host: 55.44.32.134 ()	Status: Up
+Host: 55.44.32.134 ()	Ports: 19/filtered/tcp//chargen//, 53/filtered/tcp//domain//, 80/filtered/tcp//http//, 443/filtered/tcp//https//, 8080/filtered/tcp//http-proxy//, 19/open|filtered/udp//chargen//, 53/open|filtered/udp//domain//, 80/open|filtered/udp//http//, 161/open|filtered/udp//snmp//, 443/open|filtered/udp//https//, 8080/open|filtered/udp////
+Host: 173.194.112.68 (fra07s29-in-f4.1e100.net)	Status: Up
+Host: 173.194.112.68 (fra07s29-in-f4.1e100.net)	Ports: 19/filtered/tcp//chargen//, 53/filtered/tcp//domain//, 80/open/tcp//http//, 443/open/tcp//https//, 8080/filtered/tcp//http-proxy//, 19/open|filtered/udp//chargen//, 53/open|filtered/udp//domain//, 80/open|filtered/udp//http//, 161/open|filtered/udp//snmp//, 443/open|filtered/udp//https//, 8080/open|filtered/udp////
+Host: 97.74.144.172 (p3nlh172.shr.prod.phx3.secureserver.net)	Status: Up
+Host: 97.74.144.172 (p3nlh172.shr.prod.phx3.secureserver.net)	Ports: 19/filtered/tcp//chargen//, 53/filtered/tcp//domain//, 80/open/tcp//http//, 443/filtered/tcp//https//, 8080/filtered/tcp//http-proxy//, 19/open|filtered/udp//chargen//, 53/open|filtered/udp//domain//, 80/open|filtered/udp//http//, 161/open|filtered/udp//snmp//, 443/open|filtered/udp//https//, 8080/open|filtered/udp////
+Host: 8.8.8.8 (google-public-dns-a.google.com)	Status: Up
+Host: 8.8.8.8 (google-public-dns-a.google.com)	Ports: 19/filtered/tcp//chargen//, 53/open/tcp//domain//, 80/filtered/tcp//http//, 443/filtered/tcp//https//, 8080/filtered/tcp//http-proxy//, 19/open|filtered/udp//chargen//, 53/open|filtered/udp//domain//, 80/open|filtered/udp//http//, 161/open|filtered/udp//snmp//, 443/open|filtered/udp//https//, 8080/open|filtered/udp////
+# Nmap done at Mon Nov 11 17:53:20 2013 -- 4 IP addresses (4 hosts up) scanned in 3.76 seconds

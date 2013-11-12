@@ -1,0 +1,68 @@
+# Nmap 6.25 scan initiated Mon Nov 11 17:53:17 2013 as: nmap -iL host.3.list -oA host.3_2.xml -p 80,8080,53,443,19,U:161 -sSU -v
+Failed to resolve given hostname/IP: blyha.es.  Note that you can't use '/mask' AND '1-4,7,100-' style IP ranges. If the machine only has an IPv6 address, add the Nmap -6 flag to scan that.
+Failed to resolve given hostname/IP: pepepepepepe.nz.  Note that you can't use '/mask' AND '1-4,7,100-' style IP ranges. If the machine only has an IPv6 address, add the Nmap -6 flag to scan that.
+Nmap scan report for 55.44.32.134
+Host is up (0.0014s latency).
+PORT     STATE         SERVICE
+19/tcp   filtered      chargen
+53/tcp   filtered      domain
+80/tcp   filtered      http
+443/tcp  filtered      https
+8080/tcp filtered      http-proxy
+19/udp   open|filtered chargen
+53/udp   open|filtered domain
+80/udp   open|filtered http
+161/udp  open|filtered snmp
+443/udp  open|filtered https
+8080/udp open|filtered unknown
+
+Nmap scan report for google.com (173.194.112.68)
+Host is up (0.0069s latency).
+Other addresses for google.com (not scanned): 173.194.112.67 173.194.112.66 173.194.112.64 173.194.112.78 173.194.112.73 173.194.112.70 173.194.112.71 173.194.112.72 173.194.112.69 173.194.112.65
+rDNS record for 173.194.112.68: fra07s29-in-f4.1e100.net
+PORT     STATE         SERVICE
+19/tcp   filtered      chargen
+53/tcp   filtered      domain
+80/tcp   open          http
+443/tcp  open          https
+8080/tcp filtered      http-proxy
+19/udp   open|filtered chargen
+53/udp   open|filtered domain
+80/udp   open|filtered http
+161/udp  open|filtered snmp
+443/udp  open|filtered https
+8080/udp open|filtered unknown
+
+Nmap scan report for keepnote.org (97.74.144.172)
+Host is up (0.022s latency).
+rDNS record for 97.74.144.172: p3nlh172.shr.prod.phx3.secureserver.net
+PORT     STATE         SERVICE
+19/tcp   filtered      chargen
+53/tcp   filtered      domain
+80/tcp   open          http
+443/tcp  filtered      https
+8080/tcp filtered      http-proxy
+19/udp   open|filtered chargen
+53/udp   open|filtered domain
+80/udp   open|filtered http
+161/udp  open|filtered snmp
+443/udp  open|filtered https
+8080/udp open|filtered unknown
+
+Nmap scan report for google-public-dns-a.google.com (8.8.8.8)
+Host is up (0.0052s latency).
+PORT     STATE         SERVICE
+19/tcp   filtered      chargen
+53/tcp   open          domain
+80/tcp   filtered      http
+443/tcp  filtered      https
+8080/tcp filtered      http-proxy
+19/udp   open|filtered chargen
+53/udp   open|filtered domain
+80/udp   open|filtered http
+161/udp  open|filtered snmp
+443/udp  open|filtered https
+8080/udp open|filtered unknown
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Mon Nov 11 17:53:20 2013 -- 4 IP addresses (4 hosts up) scanned in 3.76 seconds

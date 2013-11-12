@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.25 scan initiated Mon Nov 11 17:53:17 2013 as: nmap -iL host.3.list -oA host.3_2.xml -p 80,8080,53,443,19,U:161 -sSU -v -->
+<nmaprun scanner="nmap" args="nmap -iL host.3.list -oA host.3_2.xml -p 80,8080,53,443,19,U:161 -sSU -v" start="1384188797" startstr="Mon Nov 11 17:53:17 2013" version="6.25" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="19,53,80,443,8080"/>
+<scaninfo type="udp" protocol="udp" numservices="6" services="19,53,80,161,443,8080"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<target specification="blyha.es" status="skipped" reason="invalid"/>
+<target specification="pepepepepepe.nz" status="skipped" reason="invalid"/>
+<taskbegin task="Ping Scan" time="1384188797"/>
+<taskend task="Ping Scan" time="1384188797" extrainfo="4 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 4 hosts." time="1384188797"/>
+<taskend task="Parallel DNS resolution of 4 hosts." time="1384188797"/>
+<taskbegin task="SYN Stealth Scan" time="1384188797"/>
+<taskend task="SYN Stealth Scan" time="1384188799" extrainfo="20 total ports"/>
+<taskbegin task="UDP Scan" time="1384188799"/>
+<taskend task="UDP Scan" time="1384188800" extrainfo="24 total ports"/>
+<host starttime="1384188797" endtime="1384188800"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="55.44.32.134" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="19"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="80"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="443"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="udp" portid="8080"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+</ports>
+<times srtt="1385" rttvar="3314" to="100000"/>
+</host>
+<host starttime="1384188797" endtime="1384188800"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="173.194.112.68" addrtype="ipv4"/>
+<hostnames>
+<hostname name="google.com" type="user"/>
+<hostname name="fra07s29-in-f4.1e100.net" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="19"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="80"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="443"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="udp" portid="8080"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+</ports>
+<times srtt="6930" rttvar="13776" to="100000"/>
+</host>
+<host starttime="1384188797" endtime="1384188800"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="97.74.144.172" addrtype="ipv4"/>
+<hostnames>
+<hostname name="keepnote.org" type="user"/>
+<hostname name="p3nlh172.shr.prod.phx3.secureserver.net" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="19"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="80"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="443"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="udp" portid="8080"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+</ports>
+<times srtt="22013" rttvar="43044" to="194189"/>
+</host>
+<host starttime="1384188797" endtime="1384188800"><status state="up" reason="reset" reason_ttl="255"/>
+<address addr="8.8.8.8" addrtype="ipv4"/>
+<hostnames>
+<hostname name="google-public-dns-a.google.com" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="19"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="80"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="443"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3"/></port>
+<port protocol="udp" portid="8080"><state state="open|filtered" reason="no-response" reason_ttl="0"/></port>
+</ports>
+<times srtt="5189" rttvar="10218" to="100000"/>
+</host>
+<runstats><finished time="1384188800" timestr="Mon Nov 11 17:53:20 2013" elapsed="3.76" summary="Nmap done at Mon Nov 11 17:53:20 2013; 4 IP addresses (4 hosts up) scanned in 3.76 seconds" exit="success"/><hosts up="4" down="0" total="4"/>
+</runstats>
+</nmaprun>

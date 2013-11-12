@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.25 scan initiated Tue Nov 12 13:25:53 2013 as: &quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -iL host_with_os.list -oX host_with_os.list.xml -sSUV -p T:443,T:80,T:8080,T:8443,T:22,T:21,T:23,U:161,U:123,U:19 -O -v -->
+<nmaprun scanner="nmap" args="&quot;C:\\Program Files (x86)\\Nmap\\nmap.exe&quot; -iL host_with_os.list -oX host_with_os.list.xml -sSUV -p T:443,T:80,T:8080,T:8443,T:22,T:21,T:23,U:161,U:123,U:19 -O -v" start="1384262753" startstr="Tue Nov 12 13:25:53 2013" version="6.25" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="7" services="21-23,80,443,8080,8443"/>
+<scaninfo type="udp" protocol="udp" numservices="3" services="19,123,161"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1384262755"/>
+<taskend task="Ping Scan" time="1384262755" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1384262755"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1384262766"/>
+<taskbegin task="Ping Scan" time="1384262766"/>
+<taskend task="Ping Scan" time="1384262767" extrainfo="4 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 4 hosts." time="1384262767"/>
+<taskend task="Parallel DNS resolution of 4 hosts." time="1384262778"/>
+<taskbegin task="SYN Stealth Scan" time="1384262778"/>
+<taskend task="SYN Stealth Scan" time="1384262780" extrainfo="7 total ports"/>
+<taskbegin task="UDP Scan" time="1384262780"/>
+<taskend task="UDP Scan" time="1384262782" extrainfo="3 total ports"/>
+<taskbegin task="Service scan" time="1384262782"/>
+<taskprogress task="Service scan" time="1384262864" percent="66.67" remaining="42" etc="1384262905"/>
+<taskend task="Service scan" time="1384262864" extrainfo="6 services on 1 host"/>
+<taskbegin task="NSE" time="1384262866"/>
+<taskend task="NSE" time="1384262897"/>
+<host starttime="1384262755" endtime="1384262897"><status state="up" reason="echo-reply" reason_ttl="55"/>
+<address addr="173.255.243.189" addrtype="ipv4"/>
+<hostnames>
+<hostname name="nmap.org" type="user"/>
+<hostname name="nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="ssh" product="OpenSSH" version="5.3" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.3</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="http" product="Apache httpd" version="2.2.15" extrainfo="(CentOS)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.15</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="http" product="Apache httpd" version="2.2.15" extrainfo="(CentOS)" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.15</cpe></service></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<osmatch name="Linux 2.6.32 - 3.6" accuracy="100" line="71270">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.1 - 3.4" accuracy="100" line="71313">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="1850466" lastboot="Tue Oct 22 04:27:11 2013"/>
+<tcpsequence index="260" difficulty="Good luck!" values="DCBCD338,A9EFE4C5,653C0711,4C9A0922,FDF69B37,82036E82"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="6E4B63F3,6E4B6459,6E4B64BD,6E4B6521,6E4B6585,6E4B65E8"/>
+<times srtt="181794" rttvar="5358" to="203226"/>
+</host>
+<taskbegin task="Ping Scan" time="1384262897"/>
+<taskend task="Ping Scan" time="1384262897" extrainfo="3 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 3 hosts." time="1384262897"/>
+<taskend task="Parallel DNS resolution of 3 hosts." time="1384262908"/>
+<taskbegin task="SYN Stealth Scan" time="1384262908"/>
+<taskend task="SYN Stealth Scan" time="1384262910" extrainfo="28 total ports"/>
+<taskbegin task="UDP Scan" time="1384262910"/>
+<taskend task="UDP Scan" time="1384262912" extrainfo="12 total ports"/>
+<taskbegin task="Service scan" time="1384262912"/>
+<taskprogress task="Service scan" time="1384262995" percent="73.33" remaining="31" etc="1384263025"/>
+<taskend task="Service scan" time="1384263016" extrainfo="15 services on 4 hosts"/>
+<taskbegin task="NSE" time="1384263022"/>
+<taskend task="NSE" time="1384263052"/>
+<host starttime="1384262766" endtime="1384263052"><status state="up" reason="echo-reply" reason_ttl="55"/>
+<address addr="173.255.243.189" addrtype="ipv4"/>
+<hostnames>
+<hostname name="insecure.org" type="user"/>
+<hostname name="nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="ssh" product="OpenSSH" version="5.3" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.3</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="http" product="Apache httpd" version="2.2.15" extrainfo="(CentOS)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.15</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="http" product="Apache httpd" version="2.2.15" extrainfo="(CentOS)" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.15</cpe></service></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<osmatch name="Linux 2.6.32 - 3.6" accuracy="100" line="71270">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.1 - 3.4" accuracy="100" line="71313">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="1850622" lastboot="Tue Oct 22 04:27:10 2013"/>
+<tcpsequence index="259" difficulty="Good luck!" values="64B00374,8C9F695C,24DAFD93,9BE17691,3F3083BE,AD6BA31"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="6E4DB42B,6E4DB491,6E4DB4F6,6E4DB55B,6E4DB5C0,6E4DB625"/>
+<times srtt="180484" rttvar="4106" to="196908"/>
+</host>
+<host starttime="1384262766" endtime="1384263022"><status state="up" reason="echo-reply" reason_ttl="55"/>
+<address addr="74.207.244.221" addrtype="ipv4"/>
+<hostnames>
+<hostname name="scanme.org" type="user"/>
+<hostname name="scanme.nmap.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="55"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="ssh" product="OpenSSH" version="5.3p1 Debian 3ubuntu7" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.3p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="55"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="55"/><service name="http" product="Apache httpd" version="2.2.14" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.14</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="55"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="55"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="closed" reason="reset" reason_ttl="55"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="closed" reason="port-unreach" reason_ttl="55"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open" reason="udp-response" reason_ttl="55"/><service name="ntp" product="NTP" version="v4" method="probed" conf="10"/></port>
+<port protocol="udp" portid="161"><state state="closed" reason="port-unreach" reason_ttl="55"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="21"/>
+<portused state="closed" proto="udp" portid="19"/>
+<osmatch name="Linux 3.1 - 3.4" accuracy="98" line="71313">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="98"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.39" accuracy="97" line="41517">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="97"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.32 - 2.6.39" accuracy="96" line="40245">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.22 - 2.6.36" accuracy="96" line="37080">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.37" accuracy="96" line="40946">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="96"><cpe>cpe:/o:linux:linux_kernel:2.6.37</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.32 - 3.6" accuracy="95" line="71270">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.38 - 3.0" accuracy="94" line="41390">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="94"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="94"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="HP P2000 G3 NAS device" accuracy="93" line="23930">
+<osclass type="storage-misc" vendor="HP" osfamily="embedded" accuracy="93"><cpe>cpe:/h:hp:p2000_g3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.23 - 2.6.38" accuracy="93" line="37284">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.31 - 2.6.35" accuracy="93" line="39282">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="2496926" lastboot="Mon Oct 14 16:55:26 2013"/>
+<distance value="12"/>
+<tcpsequence index="201" difficulty="Good luck!" values="B63B9EE6,B5EFECC9,B69B3ED1,B6456DFF,B6D22111,B6EAAD1D"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="94D39277,94D392D4,94D3932F,94D39396,94D393F8,94D3945D"/>
+<times srtt="160644" rttvar="47098" to="349036"/>
+</host>
+<host starttime="1384262766" endtime="1384263052"><status state="up" reason="echo-reply" reason_ttl="49"/>
+<address addr="50.56.192.79" addrtype="ipv4"/>
+<hostnames>
+<hostname name="rubyforge.org" type="user"/>
+<hostname name="50-56-192-79.static.cloud-ips.com" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="host-prohibited" reason_ttl="49"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="46"/><service name="ssh" product="OpenSSH" version="5.3" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.3</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="host-prohibited" reason_ttl="49"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="46"/><service name="http" servicefp="SF-Port80-TCP:V=6.25%I=7%D=11/12%Time=52822D07%P=i686-pc-windows-windows%r(GetRequest,1D88,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:28:37\x20GMT\r\nServer:\x20Apache\r\nVary:\x20Accept-Encoding\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;\?xml\x20version=\&quot;1\.0\&quot;\x20encoding=\&quot;UTF-8\&quot;\?&gt;\n&lt;!DOCTYPE\x20html\n\tPUBLIC\x20\&quot;-//W3C//DTD\x20XHTML\x201\.0\x20Transitional//EN\&quot;\n\t\&quot;http://www\.w3\.org/TR/xhtml1/DTD/xhtml1-transitional\.dtd\&quot;&gt;\n\n&lt;html\x20xmlns=\&quot;http://www\.w3\.org/1999/xhtml\&quot;\x20xml:lang=\&quot;en\&quot;\x20lang=\&quot;en\x20\x20\x20\&quot;&gt;\n\n\x20\x20&lt;head&gt;\n\t&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=UTF-8\&quot;\x20/&gt;\n\x20\x20&lt;meta\x20name=&apos;author&apos;\x20content=\&quot;Bruce\x20Williams\x20\(http://codefluency\.com\),\x20for\nRuby\x20Central\x20\(http://rubycentral\.org\)\&quot;&gt;\n\t&lt;title&gt;RubyForge:\x20Welcome&lt;/title&gt;\n\x20\x20&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;application/rss\+xml\&quot;\x20title=\&quot;Recent\x20gems\&quot;\x20href=\&quot;http://gems\.rubyforge\.org/index\.rss\&quot;\x20/&gt;\n&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;text/xml\&quot;\x20title=\&quot;RSS\&quot;\x20href=\&quot;http://rubyforge\.org/export/rss_sfnews\.php\&quot;/&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;link\x20rel=\&quot;Shortcut\x20Icon\&quot;\x20href=\&quot;http://static\.rubyforge\.vm\.bytemark&quot;)%r(HTTPOptions,13B0,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:28:38\x20GMT\r\nServer:\x20Apache\r\nVary:\x20Accept-Encoding\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;\?xml\x20version=\&quot;1\.0\&quot;\x20encoding=\&quot;UTF-8\&quot;\?&gt;\n&lt;!DOCTYPE\x20html\n\tPUBLIC\x20\&quot;-//W3C//DTD\x20XHTML\x201\.0\x20Transitional//EN\&quot;\n\t\&quot;http://www\.w3\.org/TR/xhtml1/DTD/xhtml1-transitional\.dtd\&quot;&gt;\n\n&lt;html\x20xmlns=\&quot;http://www\.w3\.org/1999/xhtml\&quot;\x20xml:lang=\&quot;en\&quot;\x20lang=\&quot;en\x20\x20\x20\&quot;&gt;\n\n\x20\x20&lt;head&gt;\n\t&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=UTF-8\&quot;\x20/&gt;\n\x20\x20&lt;meta\x20name=&apos;author&apos;\x20content=\&quot;Bruce\x20Williams\x20\(http://codefluency\.com\),\x20for\nRuby\x20Central\x20\(http://rubycentral\.org\)\&quot;&gt;\n\t&lt;title&gt;RubyForge:\x20Welcome&lt;/title&gt;\n\x20\x20&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;application/rss\+xml\&quot;\x20title=\&quot;Recent\x20gems\&quot;\x20href=\&quot;http://gems\.rubyforge\.org/index\.rss\&quot;\x20/&gt;\n&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;text/xml\&quot;\x20title=\&quot;RSS\&quot;\x20href=\&quot;http://rubyforge\.org/export/rss_sfnews\.php\&quot;/&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;link\x20rel=\&quot;Shortcut\x20Icon\&quot;\x20href=\&quot;http://static\.rubyforge\.vm\.bytemark&quot;);" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="49"/><service name="https" servicefp="SF-Port443-TCP:V=6.25%T=SSL%I=7%D=11/12%Time=52822D0E%P=i686-pc-windows-windows%r(GetRequest,408B,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:28:44\x20GMT\r\nServer:\x20Apache\r\nVary:\x20Accept-Encoding\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;\?xml\x20version=\&quot;1\.0\&quot;\x20encoding=\&quot;UTF-8\&quot;\?&gt;\n&lt;!DOCTYPE\x20html\n\tPUBLIC\x20\&quot;-//W3C//DTD\x20XHTML\x201\.0\x20Transitional//EN\&quot;\n\t\&quot;http://www\.w3\.org/TR/xhtml1/DTD/xhtml1-transitional\.dtd\&quot;&gt;\n\n&lt;html\x20xmlns=\&quot;http://www\.w3\.org/1999/xhtml\&quot;\x20xml:lang=\&quot;en\&quot;\x20lang=\&quot;en\x20\x20\x20\&quot;&gt;\n\n\x20\x20&lt;head&gt;\n\t&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=UTF-8\&quot;\x20/&gt;\n\x20\x20&lt;meta\x20name=&apos;author&apos;\x20content=\&quot;Bruce\x20Williams\x20\(http://codefluency\.com\),\x20for\nRuby\x20Central\x20\(http://rubycentral\.org\)\&quot;&gt;\n\t&lt;title&gt;RubyForge:\x20Welcome&lt;/title&gt;\n\x20\x20&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;application/rss\+xml\&quot;\x20title=\&quot;Recent\x20gems\&quot;\x20href=\&quot;http://gems\.rubyforge\.org/index\.rss\&quot;\x20/&gt;\n&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;text/xml\&quot;\x20title=\&quot;RSS\&quot;\x20href=\&quot;http://rubyforge\.org/export/rss_sfnews\.php\&quot;/&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;link\x20rel=\&quot;Shortcut\x20Icon\&quot;\x20href=\&quot;http://static\.rubyforge\.vm\.bytemark&quot;)%r(HTTPOptions,408B,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:28:51\x20GMT\r\nServer:\x20Apache\r\nVary:\x20Accept-Encoding\r\nConnection:\x20close\r\nContent-Type:\x20text/html\r\n\r\n&lt;\?xml\x20version=\&quot;1\.0\&quot;\x20encoding=\&quot;UTF-8\&quot;\?&gt;\n&lt;!DOCTYPE\x20html\n\tPUBLIC\x20\&quot;-//W3C//DTD\x20XHTML\x201\.0\x20Transitional//EN\&quot;\n\t\&quot;http://www\.w3\.org/TR/xhtml1/DTD/xhtml1-transitional\.dtd\&quot;&gt;\n\n&lt;html\x20xmlns=\&quot;http://www\.w3\.org/1999/xhtml\&quot;\x20xml:lang=\&quot;en\&quot;\x20lang=\&quot;en\x20\x20\x20\&quot;&gt;\n\n\x20\x20&lt;head&gt;\n\t&lt;meta\x20http-equiv=\&quot;Content-Type\&quot;\x20content=\&quot;text/html;\x20charset=UTF-8\&quot;\x20/&gt;\n\x20\x20&lt;meta\x20name=&apos;author&apos;\x20content=\&quot;Bruce\x20Williams\x20\(http://codefluency\.com\),\x20for\nRuby\x20Central\x20\(http://rubycentral\.org\)\&quot;&gt;\n\t&lt;title&gt;RubyForge:\x20Welcome&lt;/title&gt;\n\x20\x20&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;application/rss\+xml\&quot;\x20title=\&quot;Recent\x20gems\&quot;\x20href=\&quot;http://gems\.rubyforge\.org/index\.rss\&quot;\x20/&gt;\n&lt;link\x20rel=\&quot;alternate\&quot;\x20type=\&quot;text/xml\&quot;\x20title=\&quot;RSS\&quot;\x20href=\&quot;http://rubyforge\.org/export/rss_sfnews\.php\&quot;/&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;link\x20rel=\&quot;Shortcut\x20Icon\&quot;\x20href=\&quot;http://static\.rubyforge\.vm\.bytemark&quot;);" tunnel="ssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="host-prohibited" reason_ttl="49"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="filtered" reason="host-prohibited" reason_ttl="49"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="filtered" reason="host-prohibited" reason_ttl="46"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="filtered" reason="host-prohibited" reason_ttl="49"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="filtered" reason="host-prohibited" reason_ttl="49"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<osmatch name="Linux 2.6.32" accuracy="100" line="72385">
+<osclass type="storage-misc" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="168826" lastboot="Sun Nov 10 14:37:06 2013"/>
+<tcpsequence index="195" difficulty="Good luck!" values="B6B246FB,B6F8C6A7,B6D6C7B4,B7290DDE,B7997B15,B7BAA7BF"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="A0F8995,A0F89FC,A0F8A62,A0F8AC5,A0F8B2B,A0F8B8F"/>
+<times srtt="148049" rttvar="1848" to="155441"/>
+</host>
+<host starttime="1384262766" endtime="1384263018"><status state="up" reason="echo-reply" reason_ttl="56"/>
+<address addr="82.94.164.162" addrtype="ipv4"/>
+<hostnames>
+<hostname name="python.org" type="user"/>
+<hostname name="dinsdale.python.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="56"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="56"/><service name="ssh" product="OpenSSH" version="5.5p1 Debian 6+squeeze3" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.5p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="56"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="56"/><service name="http" product="Apache httpd" version="2.2.16" extrainfo="(Debian)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.16</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="56"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="56"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="closed" reason="reset" reason_ttl="56"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="closed" reason="port-unreach" reason_ttl="56"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open" reason="udp-response" reason_ttl="56"/><service name="ntp" product="NTP" version="v4" method="probed" conf="10"/></port>
+<port protocol="udp" portid="161"><state state="closed" reason="port-unreach" reason_ttl="56"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="21"/>
+<portused state="closed" proto="udp" portid="19"/>
+<osmatch name="Linux 2.6.32 - 2.6.35" accuracy="100" line="70727">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="15970014" lastboot="Sat May 11 18:23:58 2013"/>
+<distance value="12"/>
+<tcpsequence index="260" difficulty="Good luck!" values="CB4A7F72,B097E1FB,1786E002,84F28E51,421FBB92,D778969C"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="other" values="ED04F398,ED04F3B1,ED04F3CB,ED04F3E4,ED04F3FD,ED04F416"/>
+<times srtt="50316" rttvar="8974" to="100000"/>
+</host>
+<taskbegin task="SYN Stealth Scan" time="1384263052"/>
+<taskend task="SYN Stealth Scan" time="1384263055" extrainfo="21 total ports"/>
+<taskbegin task="UDP Scan" time="1384263055"/>
+<taskend task="UDP Scan" time="1384263056" extrainfo="9 total ports"/>
+<taskbegin task="Service scan" time="1384263056"/>
+<taskprogress task="Service scan" time="1384263139" percent="46.15" remaining="97" etc="1384263236"/>
+<taskend task="Service scan" time="1384263153" extrainfo="13 services on 3 hosts"/>
+<taskbegin task="NSE" time="1384263159"/>
+<taskend task="NSE" time="1384263189"/>
+<host starttime="1384262897" endtime="1384263155"><status state="up" reason="echo-reply" reason_ttl="56"/>
+<address addr="82.94.164.162" addrtype="ipv4"/>
+<hostnames>
+<hostname name="docs.python.org" type="user"/>
+<hostname name="dinsdale.python.org" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="56"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="56"/><service name="ssh" product="OpenSSH" version="5.5p1 Debian 6+squeeze3" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:5.5p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="56"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="56"/><service name="http" product="Apache httpd" version="2.2.16" extrainfo="(Debian)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2.16</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="56"/><service name="https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="56"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="closed" reason="reset" reason_ttl="56"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="closed" reason="port-unreach" reason_ttl="56"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open" reason="udp-response" reason_ttl="56"/><service name="ntp" product="NTP" version="v4" method="probed" conf="10"/></port>
+<port protocol="udp" portid="161"><state state="closed" reason="port-unreach" reason_ttl="56"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="21"/>
+<portused state="closed" proto="udp" portid="19"/>
+<osmatch name="Linux 2.6.32 - 2.6.35" accuracy="100" line="70727">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="15906271" lastboot="Sun May 12 12:08:38 2013"/>
+<distance value="12"/>
+<tcpsequence index="261" difficulty="Good luck!" values="5B6FA973,2EA3FDB2,30247534,7A6F0F78,EB3D0862,2EE3D85C"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="other" values="ED05798A,ED0579A3,ED0579BD,ED0579D6,ED0579EF,ED057A08"/>
+<times srtt="47367" rttvar="4449" to="100000"/>
+</host>
+<host starttime="1384262897" endtime="1384263189"><status state="up" reason="syn-ack" reason_ttl="238"/>
+<address addr="137.254.60.11" addrtype="ipv4"/>
+<hostnames>
+<hostname name="dev.mysql.com" type="user"/>
+<hostname name="dev-mysql-adc.oracle.com" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="238"/><service name="http" product="Apache httpd" version="2.2" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2</cpe></service></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="238"/><service name="http" product="Apache httpd" version="2.2" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.2</cpe></service></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/>
+<osmatch name="F5 BIG-IP 3650 Local Traffic Manager load balancer" accuracy="86" line="18283">
+<osclass type="load balancer" vendor="F5 Networks" osfamily="embedded" accuracy="86"/>
+</osmatch>
+<osmatch name="FreeBSD 6.2-RELEASE" accuracy="85" line="19618">
+<osclass type="general purpose" vendor="FreeBSD" osfamily="FreeBSD" osgen="6.X" accuracy="85"><cpe>cpe:/o:freebsd:freebsd:6.2</cpe></osclass>
+</osmatch>
+</os>
+<uptime seconds="1283718" lastboot="Mon Oct 28 17:57:51 2013"/>
+<tcpsequence index="264" difficulty="Good luck!" values="DB797372,D77A9700,C194C677,106EE846,14A7D7F0,982F78C5"/>
+<ipidsequence class="Randomized" values="811F,E430,84E7,E6F6,88A3,E9BB"/>
+<tcptssequence class="1000HZ" values="4C837BB4,4C837C17,4C837C7B,4C837CE0,4C837D45,4C837DA9"/>
+<times srtt="144776" rttvar="3266" to="157840"/>
+</host>
+<host starttime="1384262897" endtime="1384263189"><status state="up" reason="echo-reply" reason_ttl="46"/>
+<address addr="208.118.227.10" addrtype="ipv4"/>
+<hostnames>
+<hostname name="nexpose.com" type="user"/>
+<hostname name="208.118.227.10.rapid7.com" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="46"/><service name="http" servicefp="SF-Port80-TCP:V=6.25%I=7%D=11/12%Time=52822D97%P=i686-pc-windows-windows%r(GetRequest,189C,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:31:00\x20GMT\r\nServer:\x20Apache\r\nSet-Cookie:\x20JSESSIONID=C133F99719554C84E494236B31370FA9;\x20Path=/\r\nConnection:\x20close\r\nContent-Type:\x20text/html;charset=UTF-8\r\n\r\n\r\n&lt;!DOCTYPE\x20html&gt;\r\n&lt;html\x20lang=\&quot;en\&quot;&gt;\r\n&lt;head&gt;\r\n\t\r\n\t&lt;title&gt;Vulnerability\x20Management\x20&amp;\x20Penetration\x20Testing\x20Software\x20\|\x20Rapid7&lt;/title&gt;\r\n\t&lt;meta\x20name=\&quot;description\&quot;\x20content=\&quot;Rapid7\x20provides\x20vulnerability\x20management,\x20compliance\x20and\x20penetration\x20testing\x20solutions\x20for\x20web\x20applications,\x20network\x20and\x20database\x20security\.\x20Learn\x20more\.\&quot;\x20/&gt;\r\n\t&lt;meta\x20name=\&quot;keywords\&quot;\x20content=\&quot;Rapid7\&quot;\x20/&gt;\r\n\t\r\n\t&lt;meta\x20property=\&quot;og:title\&quot;\x20content=\&quot;Vulnerability\x20Management\x20&amp;\x20Penetration\x20Testing\x20Software\x20\|\x20Rapid7\&quot;\x20/&gt;\r\n\t&lt;meta\x20property=\&quot;og:description\&quot;\x20content=\&quot;Rapid7\x20provides\x20vulnerability\x20management,\x20compliance\x20and\x20penetration\x20testing\x20solutions\x20for\x20web\x20applications,\x20network\x20and\x20database\x20security\.\x20Learn\x20more\.\&quot;\x20/&gt;\r\n\t&lt;meta\x20property=\&quot;og:image\&quot;\x20cont&quot;)%r(HTTPOptions,16E,&quot;HTTP/1\.1\x20403\x20Forbidden\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:31:01\x20GMT\r\nServer:\x20Apache\r\nContent-Length:\x20202\r\nConnection:\x20close\r\nContent-Type:\x20text/html;\x20charset=iso-8859-1\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//IETF//DTD\x20HTML\x202\.0//EN\&quot;&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;403\x20Forbidden&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Forbidden&lt;/h1&gt;\n&lt;p&gt;You\x20don&apos;t\x20have\x20permission\x20to\x20access\x20/\non\x20this\x20server\.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;\n&quot;)%r(RTSPRequest,16E,&quot;HTTP/1\.1\x20403\x20Forbidden\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:31:01\x20GMT\r\nServer:\x20Apache\r\nContent-Length:\x20202\r\nConnection:\x20close\r\nContent-Type:\x20text/html;\x20charset=iso-8859-1\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//IETF//DTD\x20HTML\x202\.0//EN\&quot;&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;403\x20Forbidden&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Forbidden&lt;/h1&gt;\n&lt;p&gt;You\x20don&apos;t\x20have\x20permission\x20to\x20access\x20/\non\x20this\x20server\.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;\n&quot;);" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="46"/><service name="https" servicefp="SF-Port443-TCP:V=6.25%T=SSL%I=7%D=11/12%Time=52822D9E%P=i686-pc-windows-windows%r(GetRequest,20C3,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:31:07\x20GMT\r\nServer:\x20Apache\r\nSet-Cookie:\x20JSESSIONID=D51E507CDEA9E64A9090C8E6598E9043;\x20Path=/;\x20Secure\r\nConnection:\x20close\r\nContent-Type:\x20text/html;charset=UTF-8\r\n\r\n\r\n&lt;!DOCTYPE\x20html&gt;\r\n&lt;html\x20lang=\&quot;en\&quot;&gt;\r\n&lt;head&gt;\r\n\t\r\n\t&lt;title&gt;Vulnerability\x20Management\x20&amp;\x20Penetration\x20Testing\x20Software\x20\|\x20Rapid7&lt;/title&gt;\r\n\t&lt;meta\x20name=\&quot;description\&quot;\x20content=\&quot;Rapid7\x20provides\x20vulnerability\x20management,\x20compliance\x20and\x20penetration\x20testing\x20solutions\x20for\x20web\x20applications,\x20network\x20and\x20database\x20security\.\x20Learn\x20more\.\&quot;\x20/&gt;\r\n\t&lt;meta\x20name=\&quot;keywords\&quot;\x20content=\&quot;Rapid7\&quot;\x20/&gt;\r\n\t\r\n\t&lt;meta\x20property=\&quot;og:title\&quot;\x20content=\&quot;Vulnerability\x20Management\x20&amp;\x20Penetration\x20Testing\x20Software\x20\|\x20Rapid7\&quot;\x20/&gt;\r\n\t&lt;meta\x20property=\&quot;og:description\&quot;\x20content=\&quot;Rapid7\x20provides\x20vulnerability\x20management,\x20compliance\x20and\x20penetration\x20testing\x20solutions\x20for\x20web\x20applications,\x20network\x20and\x20database\x20security\.\x20Learn\x20more\.\&quot;\x20/&gt;\r\n\t&lt;meta\x20property=\&quot;og:ima&quot;)%r(HTTPOptions,16E,&quot;HTTP/1\.1\x20403\x20Forbidden\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:31:14\x20GMT\r\nServer:\x20Apache\r\nContent-Length:\x20202\r\nConnection:\x20close\r\nContent-Type:\x20text/html;\x20charset=iso-8859-1\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//IETF//DTD\x20HTML\x202\.0//EN\&quot;&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;403\x20Forbidden&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Forbidden&lt;/h1&gt;\n&lt;p&gt;You\x20don&apos;t\x20have\x20permission\x20to\x20access\x20/\non\x20this\x20server\.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;\n&quot;)%r(RTSPRequest,16E,&quot;HTTP/1\.1\x20403\x20Forbidden\r\nDate:\x20Tue,\x2012\x20Nov\x202013\x2013:31:14\x20GMT\r\nServer:\x20Apache\r\nContent-Length:\x20202\r\nConnection:\x20close\r\nContent-Type:\x20text/html;\x20charset=iso-8859-1\r\n\r\n&lt;!DOCTYPE\x20HTML\x20PUBLIC\x20\&quot;-//IETF//DTD\x20HTML\x202\.0//EN\&quot;&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;403\x20Forbidden&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Forbidden&lt;/h1&gt;\n&lt;p&gt;You\x20don&apos;t\x20have\x20permission\x20to\x20access\x20/\non\x20this\x20server\.&lt;/p&gt;\n&lt;/body&gt;&lt;/html&gt;\n&quot;);" tunnel="ssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https-alt" method="table" conf="3"/></port>
+<port protocol="udp" portid="19"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="chargen" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="80"/>
+<osmatch name="Linux 2.6.15 - 2.6.26" accuracy="100" line="33703">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.18" accuracy="100" line="34596">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6.18</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.9 - 2.6.27" accuracy="100" line="42408">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:2.6</cpe></osclass>
+</osmatch>
+<osmatch name="ZoneAlarm Z100G WAP" accuracy="100" line="69777">
+<osclass type="WAP" vendor="ZoneAlarm" osfamily="embedded" accuracy="100"><cpe>cpe:/h:zonealarm:z100g</cpe></osclass>
+</osmatch>
+</os>
+<times srtt="113765" rttvar="1821" to="121049"/>
+</host>
+<runstats><finished time="1384263189" timestr="Tue Nov 12 13:33:09 2013" elapsed="437.17" summary="Nmap done at Tue Nov 12 13:33:09 2013; 8 IP addresses (8 hosts up) scanned in 437.17 seconds" exit="success"/><hosts up="8" down="0" total="8"/>
+</runstats>
+</nmaprun>

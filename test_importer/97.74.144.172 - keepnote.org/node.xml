@@ -5,12 +5,14 @@
   <key>title_fgcolor</key><string>#00AA00</string>
   <key>expanded</key><true/>
   <key>title</key><string>97.74.144.172 - keepnote.org</string>
-  <key>nodeid</key><string>9d9a39d5-55d9-49b5-ae97-9af86cf2597f</string>
-  <key>modified_time</key><integer>1384186245</integer>
+  <key>nodeid</key><string>e1cdde41-64a1-4b46-89ec-214e06757b9f</string>
+  <key>modified_time</key><integer>1384186505</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>application/x-notebook-dir</string>
-  <key>created_time</key><integer>1384186245</integer>
+  <key>created_time</key><integer>1384186505</integer>
+  <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>1</integer>
+  <key>info_sort</key><string>order</string>
   <key>icon</key><string>folder-green.png</string>
 </dict>
 </node>

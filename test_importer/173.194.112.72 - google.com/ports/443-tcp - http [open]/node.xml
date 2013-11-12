@@ -4,12 +4,14 @@
 <dict>
   <key>title_fgcolor</key><string>#00AA00</string>
   <key>title</key><string>443/tcp - http [open]</string>
-  <key>nodeid</key><string>e55602b7-e90f-4dbf-a90e-3a160e138652</string>
-  <key>modified_time</key><integer>1384186245</integer>
+  <key>nodeid</key><string>bb79473c-9391-470b-91be-e5757eed30b1</string>
+  <key>modified_time</key><integer>1384186505</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1384186245</integer>
+  <key>created_time</key><integer>1384186505</integer>
+  <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>3</integer>
+  <key>info_sort</key><string>order</string>
   <key>icon</key><string>note-green.png</string>
 </dict>
 </node>

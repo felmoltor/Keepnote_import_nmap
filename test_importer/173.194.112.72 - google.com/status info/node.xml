@@ -3,11 +3,13 @@
 <version>6</version>
 <dict>
   <key>title</key><string>Status Info</string>
-  <key>nodeid</key><string>88b27cb5-c4e3-4288-839f-b601d7b4fb91</string>
-  <key>modified_time</key><integer>1384186245</integer>
+  <key>nodeid</key><string>16e87791-e20c-4093-8d83-7dd81f34597f</string>
+  <key>modified_time</key><integer>1384186504</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1384186245</integer>
+  <key>created_time</key><integer>1384186504</integer>
+  <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>0</integer>
+  <key>info_sort</key><string>order</string>
 </dict>
 </node>

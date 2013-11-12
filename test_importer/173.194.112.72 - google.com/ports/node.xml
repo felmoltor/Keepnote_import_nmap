@@ -4,11 +4,13 @@
 <dict>
   <key>expanded</key><true/>
   <key>title</key><string>Ports</string>
-  <key>nodeid</key><string>6e72553c-d416-4b7f-8b45-345ea562ab96</string>
-  <key>modified_time</key><integer>1384186245</integer>
+  <key>nodeid</key><string>e48ab944-0865-47f0-96a7-aa28d2f3c428</string>
+  <key>modified_time</key><integer>1384186505</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>application/x-notebook-dir</string>
-  <key>created_time</key><integer>1384186245</integer>
+  <key>created_time</key><integer>1384186505</integer>
+  <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>2</integer>
+  <key>info_sort</key><string>order</string>
 </dict>
 </node>

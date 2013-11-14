@@ -161,15 +161,15 @@ def get_os_icon(hos):
     # NOTE: For now, not using re as this produces a slower import
     if (hlos.find("freebsd") >= 0): #.search('.*freebsd.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/freebsd.png" % mypath
-    elif (hlos.find("windows") >= 0 and os.find("xp") >= 0): #(re.search('.*windows\s+xp.*',hos,flags=re.IGNORECASE) is not None):
+    elif (hlos.find("windows") >= 0 and hlos.find("xp") >= 0): #(re.search('.*windows\s+xp.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/winxp.png" % mypath
-    elif (hlos.find("windows") >= 0 and os.find("nt") >= 0): # (re.search('.*windows\s+nt.*',hos,flags=re.IGNORECASE) is not None):
+    elif (hlos.find("windows") >= 0 and hlos.find("nt") >= 0): # (re.search('.*windows\s+nt.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/winxp.png" % mypath
-    elif (hlos.find("windows") >= 0 and os.find("vista") >= 0): # (re.search('.*windows\s+vista.*',hos,flags=re.IGNORECASE) is not None):
+    elif (hlos.find("windows") >= 0 and hlos.find("vista") >= 0): # (re.search('.*windows\s+vista.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/win7.png" % mypath
-    elif (hlos.find("windows") >= 0 and os.find("7") >= 0): # (re.search('.*windows\s+7.*',hos,flags=re.IGNORECASE) is not None):
+    elif (hlos.find("windows") >= 0 and hlos.find("7") >= 0): # (re.search('.*windows\s+7.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/win7.png" % mypath
-    elif (hlos.find("mac") >= 0 and os.find("os") >= 0): # (re.search('.*mac\s+os.*',hos,flags=re.IGNORECASE) is not None):
+    elif (hlos.find("mac") >= 0 and hlos.find("os") >= 0): # (re.search('.*mac\s+os.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/mac.png" % mypath
     elif (hlos.find("solaris") >= 0): # (re.search('.*solaris.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/solaris.png" % mypath
@@ -181,6 +181,10 @@ def get_os_icon(hos):
         return "%s/icons/bluecoat.png" % mypath
     elif (hlos.find("juniper") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/juniper.png" % mypath
+    elif (hlos.find("f5") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/f5.png" % mypath
+    elif (hlos.find("cisco") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/cisco.png" % mypath
     else:
         return None    
 

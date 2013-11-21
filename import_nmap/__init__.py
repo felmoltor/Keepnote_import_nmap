@@ -185,6 +185,10 @@ def get_os_icon(hos):
         return "%s/icons/f5.png" % mypath
     elif (hlos.find("cisco") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/cisco.png" % mypath
+    elif (hlos.find("windows") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/winxp.png" % mypath
+    elif (hlos.find("HP-UX") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/hp.png" % mypath
     else:
         return None    
 
@@ -205,15 +209,28 @@ def import_nmap(node, filename, index=None, task=None):
         task = tasklib.Task()
 
     nmapxml = minidom.parse(filename)
-
+    
+    # Searching for up and down numbers
+    nhostup=nmapxml.getElementsByTagName("hosts")[0].getAttribute("up")
+    nhostdown=nmapxml.getElementsByTagName("hosts")[0].getAttribute("down")
+    scanstats = "(%s up, %s down)" % (nhostup,nhostdown)
+    originaltitle = node.get_attr("title")
+    node.set_attr("title", "%s %s" % (originaltitle,scanstats))
+    
+    # Create a Up and Down folder
+    uphostsfolder = node.new_child(notebooklib.CONTENT_TYPE_DIR,("Up"),index)
+    uphostsfolder.set_attr("title", ("Up (%s)" % nhostup))
+    # Create a Up and Down folder
+    downhostsfolder = node.new_child(notebooklib.CONTENT_TYPE_DIR,("Down"),index)
+    downhostsfolder.set_attr("title", ("Down (%s)" % nhostdown))
+    
     for hostnode in nmapxml.getElementsByTagName("host"):
         
         hosfirstmatch = None
+        newhostnode = None
         icon = None
         detectedos = []
         
-        hstartime = hostnode.getAttribute("starttime")
-        hendtime = hostnode.getAttribute("endtime")
         hstatus = hostnode.getElementsByTagName("status")[0].getAttribute("state")
         hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
         hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
@@ -247,7 +264,11 @@ def import_nmap(node, filename, index=None, task=None):
             else:
                 mainhostname = haddress
         
-        newhostnode = node.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
+        # New host node hanging from "Up" or "Down" folder
+        if (hstatus == "up"):
+            newhostnode = uphostsfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
+        else:
+            newhostnode = downhostsfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
         newhostnode.set_attr("title",("%s - %s") % (haddress,mainhostname))
         
         # Create a page with status reason of the host and other information
@@ -315,6 +336,12 @@ def import_nmap(node, filename, index=None, task=None):
             
         # If this host has any port information
         if len(hostnode.getElementsByTagName("ports")) > 0:
+            n_udpopen = 0
+            n_udpclosed = 0
+            n_udpfiltered = 0
+            n_tcpopen = 0
+            n_tcpclosed = 0
+            n_tcpfiltered = 0
             # Create a folder for TCP Ports
             tcpportfolder = newhostnode.new_child(notebooklib.CONTENT_TYPE_DIR,("TCP"),index)
             tcpportfolder.set_attr("title", ("TCP"))
@@ -337,11 +364,25 @@ def import_nmap(node, filename, index=None, task=None):
                 if pprotocol.upper() == "TCP":
                     # Create the page node fot TCP
                     newportchild = tcpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
-                    newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    newportchild.set_attr("title",("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    # Save port status stats
+                    if (pstate.upper() == "OPEN"):
+                        n_tcpopen += 1
+                    elif (pstate.upper() == "CLOSED"):
+                        n_tcpclosed += 1
+                    else:    
+                        n_tcpfiltered += 1                    
                 else:
                     # Create the page node fot UDP
                     newportchild = udpportfolder.new_child(notebooklib.CONTENT_TYPE_PAGE,("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
-                    newportchild.set_attr("title",("%s/%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    newportchild.set_attr("title",("%s_%s - %s [%s]") % (pnumber,pprotocol,pservicename,pstate))
+                    # Save port status stats
+                    if (pstate.upper() == "OPEN"):
+                        n_udpopen += 1
+                    elif (pstate.upper() == "CLOSED"):
+                        n_udpclosed += 1
+                    else:
+                        n_udpfiltered += 1
                     
                 portout = safefile.open(newportchild.get_data_file(),"w",codec="utf-8")
                 portout.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
@@ -364,6 +405,27 @@ def import_nmap(node, filename, index=None, task=None):
                     newportchild.set_attr("icon","note-red.png")
                     newportchild.set_attr("title_fgcolor","#AA0000")
 
+            # Update Ports UPD/TCP Stats in the title
+            # For TCP
+            portstats = "" 
+            if (n_tcpopen>0):
+                portstats += "%s open" % n_tcpopen
+            if (n_tcpclosed>0):
+                portstats += ",%s closed" % n_tcpclosed
+            if (n_tcpfiltered>0):
+                portstats += ",%s filtered" % n_tcpfiltered
+            if (len(portstats)>0):
+                tcpportfolder.set_attr("title","TCP (%s)" % portstats)
+            # For UDP
+            portstats = "" 
+            if (n_udpopen>0):
+                portstats += "%s open" % n_udpopen
+            if (n_udpclosed>0):
+                portstats += ",%s closed" % n_udpclosed
+            if (n_udpfiltered>0):
+                portstats += ",%s filtered" % n_udpfiltered
+            if (len(portstats)>0):
+                udpportfolder.set_attr("title","UDP (%s)" % portstats)
 
     task.finish()
                      

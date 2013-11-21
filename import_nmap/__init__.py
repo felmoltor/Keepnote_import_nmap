@@ -411,9 +411,13 @@ def import_nmap(node, filename, index=None, task=None):
             if (n_tcpopen>0):
                 portstats += "%s open" % n_tcpopen
             if (n_tcpclosed>0):
-                portstats += ",%s closed" % n_tcpclosed
+                if (len(portstats)>0):
+                    portstats += ","
+                portstats += "%s closed" % n_tcpclosed
             if (n_tcpfiltered>0):
-                portstats += ",%s filtered" % n_tcpfiltered
+                if (len(portstats)>0):
+                    portstats += ","
+                portstats += "%s filtered" % n_tcpfiltered
             if (len(portstats)>0):
                 tcpportfolder.set_attr("title","TCP (%s)" % portstats)
             # For UDP
@@ -421,9 +425,13 @@ def import_nmap(node, filename, index=None, task=None):
             if (n_udpopen>0):
                 portstats += "%s open" % n_udpopen
             if (n_udpclosed>0):
-                portstats += ",%s closed" % n_udpclosed
+                if (len(portstats)>0):
+                    portstats += ","
+                portstats += "%s closed" % n_udpclosed
             if (n_udpfiltered>0):
-                portstats += ",%s filtered" % n_udpfiltered
+                if (len(portstats)>0):
+                    portstats += ","
+                portstats += "%s filtered" % n_udpfiltered
             if (len(portstats)>0):
                 udpportfolder.set_attr("title","UDP (%s)" % portstats)
 

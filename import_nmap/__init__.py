@@ -189,6 +189,8 @@ def get_os_icon(hos):
         return "%s/icons/winxp.png" % mypath
     elif (hlos.find("HP-UX") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
         return "%s/icons/hp.png" % mypath
+    elif (hlos.find("SonicWALL") >= 0): # (re.search('.*qemu.*',hos,flags=re.IGNORECASE) is not None):
+        return "%s/icons/sonicwall.png" % mypath
     else:
         return None    
 
@@ -289,8 +291,7 @@ def import_nmap(node, filename, index=None, task=None):
             
             if icon is not None:
                 osinfonode.write("<br/>")
-                osinfonode.write("<img src=\"%s\"/><br/>" % icon)
-                
+                osinfonode.write("<img src=\"%s\"/><br/>" % icon)                
                 
             for os in detectedos:
                 osinfonode.write("-----------------------------------<br/>")

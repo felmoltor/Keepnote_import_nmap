@@ -238,9 +238,9 @@ def import_nmap(node, filename, index=None, task=None):
         hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
         haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
         
-        if len(hostnode.getElementsByTagName("detected_os")) > 0:
+        if len(hostnode.getElementsByTagName("os")) > 0:
             oscount = 0
-            for osmatch in hostnode.getElementsByTagName("detected_os")[0].getElementsByTagName("osmatch"):
+            for osmatch in hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch"):
                 osname = osmatch.getAttribute("name")
                 osaccuracy = osmatch.getAttribute("accuracy")
                 osfamily = osmatch.getElementsByTagName("osclass")[0].getAttribute("family")
@@ -254,7 +254,7 @@ def import_nmap(node, filename, index=None, task=None):
             
             # If no OS was identified by nmap
             if oscount == 0:
-                mypath = detected_os.path.dirname(os.path.abspath(__file__))
+                mypath = os.path.dirname(os.path.abspath(__file__))
                 icon = "%s/icons/question.png" % mypath
         
         # Create the folder with the first IP obtained and the fist hostname
@@ -289,7 +289,7 @@ def import_nmap(node, filename, index=None, task=None):
         statusout.close()
         
         
-        if len(hostnode.getElementsByTagName("detected_os")) > 0:
+        if len(hostnode.getElementsByTagName("os")) > 0:
             osinfonode = newhostnode.new_child(notebooklib.CONTENT_TYPE_PAGE,"OS Information",None)
             osinfonode = safefile.open(osinfonode.get_data_file(),"w",codec="utf-8")
             osinfonode.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><body>""")
@@ -312,6 +312,7 @@ def import_nmap(node, filename, index=None, task=None):
         
         # Icon selection
         if icon is not None:
+            print "Setting the icon for host %s to %s" % (haddress,icon)
             newhostnode.set_attr("icon",icon)
         else:
             # Change the color of the Host depending on the state (Up: Green, Dow: Red)

@@ -251,6 +251,11 @@ def import_nmap(node, filename, index=None, task=None):
                     hosfirstmatch = osname
                     icon = get_os_icon(hosfirstmatch)
                 oscount += 1
+            
+            # No OS was identified by nmap
+            if oscount == 0:
+                mypath = os.path.dirname(os.path.abspath(__file__))
+                icon = "%s/icons/question.png" % mypath
         
         # Create the folder with the first IP obtained and the fist hostname
         hnames = []

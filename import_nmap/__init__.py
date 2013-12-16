@@ -228,15 +228,23 @@ def import_nmap(node, filename, index=None, task=None):
     
     for hostnode in nmapxml.getElementsByTagName("host"):
         
+        hstatus = "Unknown"
+        hstatusreason = "Unknown"
+        hstatusreasonttl = "Unknown"
+        haddress = "Unknown"
         hosfirstmatch = None
         newhostnode = None
         icon = None
         detectedos = []
         
-        hstatus = hostnode.getElementsByTagName("status")[0].getAttribute("state")
-        hstatusreason =  hostnode.getElementsByTagName("status")[0].getAttribute("reason")
-        hstatusreasonttl =  hostnode.getElementsByTagName("status")[0].getAttribute("reason_ttl")
-        haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
+        if len(hostnode.getElementsByTagName("status")) > 0:
+            hstatusnode = hostnode.getElementsByTagName("status")[0]
+            hstatus = hstatusnode.getAttribute("state")
+            hstatusreason =  hstatusnode.getAttribute("reason")
+            hstatusreasonttl =  hstatusnode.getAttribute("reason_ttl")
+        
+        if (len(hostnode.getElementsByTagName("address")) > 0):
+            haddress = hostnode.getElementsByTagName("address")[0].getAttribute("addr")
         
         if len(hostnode.getElementsByTagName("os")) > 0:
             oscount = 0
@@ -358,14 +366,28 @@ def import_nmap(node, filename, index=None, task=None):
             udpportfolder.set_attr("title", ("UDP"))
             
             for port in hostnode.getElementsByTagName("ports")[0].getElementsByTagName("port"):
+                
+                pstate = "Unknown"
+                pstatereason = "Unknown"
+                pservicename = "Unknown"
+                pserviceproduct = "Unknown"
+                pserviceversion = "Unknown"
+                pserviceostype = "Unknown"
+                    
                 pnumber = port.getAttribute("portid")
                 pprotocol = port.getAttribute("protocol")
-                pstate = port.getElementsByTagName("state")[0].getAttribute("state")
-                pstatereason = port.getElementsByTagName("state")[0].getAttribute("reason")
-                pservicename = port.getElementsByTagName("service")[0].getAttribute("name")
-                pserviceproduct = port.getElementsByTagName("service")[0].getAttribute("product")
-                pserviceversion = port.getElementsByTagName("service")[0].getAttribute("version")
-                pserviceostype = port.getElementsByTagName("service")[0].getAttribute("ostype")
+                
+                if len(port.getElementsByTagName("state")) > 0:
+                    statenode = port.getElementsByTagName("state")[0]
+                    pstate = statenode.getAttribute("state")
+                    pstatereason = statenode.getAttribute("reason")
+                    
+                if len(port.getElementsByTagName("service")) > 0:
+                    servicenode = port.getElementsByTagName("service")[0]
+                    pservicename = servicenode.getAttribute("name")
+                    pserviceproduct = servicenode.getAttribute("product")
+                    pserviceversion = servicenode.getAttribute("version")
+                    pserviceostype = servicenode.getAttribute("ostype")
                 
                 newportchild = None
                 if pprotocol.upper() == "TCP":

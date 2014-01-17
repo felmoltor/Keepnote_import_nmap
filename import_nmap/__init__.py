@@ -226,6 +226,11 @@ def import_nmap(node, filename, index=None, task=None):
     downhostsfolder = node.new_child(notebooklib.CONTENT_TYPE_DIR,("Down"),index)
     downhostsfolder.set_attr("title", ("Down (%s)" % nhostdown))
     
+    noportsopenfolder = uphostsfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("No Ports Open"),index)
+    noportsopenfolder.set_attr("title",("No Ports Open"))
+    withportsopenfolder = uphostsfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("With Ports Open"),index)
+    withportsopenfolder.set_attr("title","With Ports Open")
+    
     for hostnode in nmapxml.getElementsByTagName("host"):
         
         hstatus = "Unknown"
@@ -281,7 +286,10 @@ def import_nmap(node, filename, index=None, task=None):
         
         # New host node hanging from "Up" or "Down" folder
         if (hstatus == "up"):
-            newhostnode = uphostsfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
+            if len(hostnode.getElementsByTagName("ports")) > 0:
+                newhostnode = withportsopenfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
+            else:
+                newhostnode = noportsopenfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
         else:
             newhostnode = downhostsfolder.new_child(notebooklib.CONTENT_TYPE_DIR,("%s - %s") % (haddress,mainhostname),index)
         newhostnode.set_attr("title",("%s - %s") % (haddress,mainhostname))
@@ -463,7 +471,8 @@ def import_nmap(node, filename, index=None, task=None):
                 portstats += "%s filtered" % n_udpfiltered
             if (len(portstats)>0):
                 udpportfolder.set_attr("title","UDP (%s)" % portstats)
-
+        
+                
     task.finish()
                      
 

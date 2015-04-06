@@ -2,7 +2,7 @@
 <extension>
   <dict>
     <key>version</key>
-    <string>0.1</string>
+    <string>0.2</string>
     <key>name</key>
     <string>Import Nmap XML file</string>
     <key>author</key>

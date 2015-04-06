@@ -256,9 +256,7 @@ def import_nmap(node, filename, index=None, task=None):
             for osmatch in hostnode.getElementsByTagName("os")[0].getElementsByTagName("osmatch"):
                 osname = osmatch.getAttribute("name")
                 osaccuracy = osmatch.getAttribute("accuracy")
-                osfamily = osmatch.getElementsByTagName("osclass")[0].getAttribute("osfamily")
-                if osfamily is None:
-                    osfamily= osmatch.getElementsByTagName("osclass")[0].getAttribute("family")
+                osfamily = osmatch.getElementsByTagName("osclass")[0].getAttribute("family")
                 osvendor = osmatch.getElementsByTagName("osclass")[0].getAttribute("vendor")
                 ostype = osmatch.getElementsByTagName("osclass")[0].getAttribute("type")
                 detectedos.append([osname,osaccuracy,ostype,osvendor,osfamily])

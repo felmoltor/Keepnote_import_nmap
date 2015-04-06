@@ -22,6 +22,14 @@ _Ports_:
   - Color Orange: Filtered
   - Color Green Is open
 
+**Troubleshoots**
+
+If you uninstall and install this plugin more than one time, you'll probably have problems installing it again.
+This is because Keepnote does not delete the previous kne file of the plugin when you uninstall a plugin.
+
+You have to manually delete the plugin file "import_nmap.kne" from your plugin folder usually located in "~/.config/keepnote/extensions".
+Then you will be able to install the plugin again.
+
 **Bugs**
 
 Send any bug to https://twitter.com/felmoltor.

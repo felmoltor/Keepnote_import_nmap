@@ -7,9 +7,12 @@ This plugin is usefull to keep track of the intrusion test you have done on ever
 **Instructions**
 
   1. Open your keepnote.
-  2. Navigate to "Edit -> Preferences -> Extensiones"
+  2. Navigate to "Edit -> Preferences -> Extensions"
   3. Click on "Install new extension" and open the file import_nmap.kne.
-  4. Once it is installed correctly you can navigate to "File -> Import Notebook -> Import Nmap XML" and select your XML file.
+  4. Once it is installed correctly:
+    - Create a new notebook and select this new notebook before importing the XML.
+    - Now, navigate to "File -> Import Notebook -> Import Nmap XML" and select your XML file
+
 
 As a result you'll have a beautifull colored tree with a folder for each IP with a hanging folder for port information.
 
@@ -32,4 +35,9 @@ Then you will be able to install the plugin again.
 
 **Bugs**
 
-Send any bug to https://twitter.com/felmoltor.
+Send any bug to https://twitter.com/felmoltor
+
+**TODO**
+
+- Import multiple XML files at the same time
+- Notify the user if he has not selected a keepnote or a node where to import the file.
